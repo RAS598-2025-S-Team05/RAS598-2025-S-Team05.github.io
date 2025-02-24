@@ -53,11 +53,50 @@ This project explores the collaborative capabilities between the UR5 robotic arm
 - TurtleBot navigates to the drop location and verifies object placement.
 - TurtleBot either picks up the object or signals task completion.
 
-## Step-by-Step Implementation
+## UR5 Robot Setup
 
-### UR5 Robot Setup
+### Configure URDF for Attaching a Camera and Gripper
 
-1. Install UR5 Drivers & MoveIt2:
+To integrate the camera and gripper with the UR5 robotic arm, follow these steps:
+
+1. **Modify the URDF**:
+   - Update the UR5's URDF file to include the camera and gripper models.
+   - Ensure the kinematic chain is correctly defined for motion planning.
+
+2. **Test the Configuration**:
+   - Use RViz to visualize the UR5 with the attached camera and gripper.
+   - Verify that the robot can move as expected with the new components.
+
+### Implement `ur5_vision_node` for Object Detection
+
+1. **Install Dependencies**:
+   - Install OpenCV and YOLOv5 for object detection:
+     ```bash
+     pip install opencv-python
+     pip install yolov5
+     ```
+
+2. **Develop the Node**:
+   - Create a ROS2 node (`ur5_vision_node`) that subscribes to the camera feed and performs object detection.
+   - Publish the detected object's position to a ROS2 topic (e.g., `/detected_object`).
+
+### Implement `ur5_pick_place_node` for Pick-and-Place Routine
+
+1. **Develop the Node**:
+   - Create a ROS2 node (`ur5_pick_place_node`) that subscribes to `/detected_object` and plans the pick-and-place motion using MoveIt2.
+   - Execute the motion plan and confirm successful object manipulation.
+
+2. **Test the Routine**:
+   - Simulate the pick-and-place routine in Gazebo.
+   - Verify that the UR5 can reliably pick and place objects.
+
+---
+
+## TurtleBot Navigation Setup
+
+### Install Nav2 & SLAM Packages
+
+1. **Install Required Packages**:
    ```bash
-   sudo apt install ros-humble-ur5e-description
-   sudo apt install ros-humble-moveit
+   sudo apt install ros-humble-nav2-bringup
+   sudo apt install ros-humble-turtlebot3-bringup

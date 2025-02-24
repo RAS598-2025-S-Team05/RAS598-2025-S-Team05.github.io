@@ -545,19 +545,61 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-by-step-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step-by-Step Implementation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step-by-Step Implementation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#ur5-robot-setup" class="md-nav__link">
     <span class="md-ellipsis">
       UR5 Robot Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UR5 Robot Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-urdf-for-attaching-a-camera-and-gripper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure URDF for Attaching a Camera and Gripper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-ur5_vision_node-for-object-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implement ur5_vision_node for Object Detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-ur5_pick_place_node-for-pick-and-place-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implement ur5_pick_place_node for Pick-and-Place Routine
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turtlebot-navigation-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      TurtleBot Navigation Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TurtleBot Navigation Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-nav2-slam-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Nav2 &amp; SLAM Packages
     </span>
   </a>
   
@@ -915,19 +957,61 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-by-step-implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step-by-Step Implementation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step-by-Step Implementation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#ur5-robot-setup" class="md-nav__link">
     <span class="md-ellipsis">
       UR5 Robot Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UR5 Robot Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-urdf-for-attaching-a-camera-and-gripper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure URDF for Attaching a Camera and Gripper
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-ur5_vision_node-for-object-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implement ur5_vision_node for Object Detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-ur5_pick_place_node-for-pick-and-place-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implement ur5_pick_place_node for Pick-and-Place Routine
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turtlebot-navigation-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      TurtleBot Navigation Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TurtleBot Navigation Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-nav2-slam-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Nav2 &amp; SLAM Packages
     </span>
   </a>
   
@@ -1003,13 +1087,57 @@
 <li>TurtleBot navigates to the drop location and verifies object placement.</li>
 <li>TurtleBot either picks up the object or signals task completion.</li>
 </ul>
-<h2 id="step-by-step-implementation">Step-by-Step Implementation</h2>
-<h3 id="ur5-robot-setup">UR5 Robot Setup</h3>
+<h2 id="ur5-robot-setup">UR5 Robot Setup</h2>
+<h3 id="configure-urdf-for-attaching-a-camera-and-gripper">Configure URDF for Attaching a Camera and Gripper</h3>
+<p>To integrate the camera and gripper with the UR5 robotic arm, follow these steps:</p>
 <ol>
-<li>Install UR5 Drivers &amp; MoveIt2:
+<li><strong>Modify the URDF</strong>:</li>
+<li>Update the UR5's URDF file to include the camera and gripper models.</li>
+<li>
+<p>Ensure the kinematic chain is correctly defined for motion planning.</p>
+</li>
+<li>
+<p><strong>Test the Configuration</strong>:</p>
+</li>
+<li>Use RViz to visualize the UR5 with the attached camera and gripper.</li>
+<li>Verify that the robot can move as expected with the new components.</li>
+</ol>
+<h3 id="implement-ur5_vision_node-for-object-detection">Implement <code>ur5_vision_node</code> for Object Detection</h3>
+<ol>
+<li><strong>Install Dependencies</strong>:</li>
+<li>
+<p>Install OpenCV and YOLOv5 for object detection:
+     <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>opencv-python
+pip<span class="w"> </span>install<span class="w"> </span>yolov5
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Develop the Node</strong>:</p>
+</li>
+<li>Create a ROS2 node (<code>ur5_vision_node</code>) that subscribes to the camera feed and performs object detection.</li>
+<li>Publish the detected object's position to a ROS2 topic (e.g., <code>/detected_object</code>).</li>
+</ol>
+<h3 id="implement-ur5_pick_place_node-for-pick-and-place-routine">Implement <code>ur5_pick_place_node</code> for Pick-and-Place Routine</h3>
+<ol>
+<li><strong>Develop the Node</strong>:</li>
+<li>Create a ROS2 node (<code>ur5_pick_place_node</code>) that subscribes to <code>/detected_object</code> and plans the pick-and-place motion using MoveIt2.</li>
+<li>
+<p>Execute the motion plan and confirm successful object manipulation.</p>
+</li>
+<li>
+<p><strong>Test the Routine</strong>:</p>
+</li>
+<li>Simulate the pick-and-place routine in Gazebo.</li>
+<li>Verify that the UR5 can reliably pick and place objects.</li>
+</ol>
+<hr />
+<h2 id="turtlebot-navigation-setup">TurtleBot Navigation Setup</h2>
+<h3 id="install-nav2-slam-packages">Install Nav2 &amp; SLAM Packages</h3>
+<ol>
+<li><strong>Install Required Packages</strong>:
    ```bash
-   sudo apt install ros-humble-ur5e-description
-   sudo apt install ros-humble-moveit</li>
+   sudo apt install ros-humble-nav2-bringup
+   sudo apt install ros-humble-turtlebot3-bringup</li>
 </ol>
 
 
