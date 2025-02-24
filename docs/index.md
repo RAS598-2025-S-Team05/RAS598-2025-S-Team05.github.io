@@ -14,7 +14,7 @@ tags:
 - **Team Number**: 05
 - **Team Members**: Asrith Pandreka, Varun Karthik, Anjali Notani
 - **Semester and Year**: Spring 2025
-- **University, Class, Professor**: Arizona State University, RAS 598, Dr. Daniel Aukes
+- **University, Class, Professor**: Arizona State University, RAS 598, Professor Daniel Aukes
 
 ## Research Question
 
