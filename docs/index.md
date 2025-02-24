@@ -100,3 +100,6 @@ To integrate the camera and gripper with the UR5 robotic arm, follow these steps
    ```bash
    sudo apt install ros-humble-nav2-bringup
    sudo apt install ros-humble-turtlebot3-bringup
+
+
+## hgfyeubjen
