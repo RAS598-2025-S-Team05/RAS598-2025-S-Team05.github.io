@@ -1,25 +1,63 @@
 ---
-title: Welcome to Team05's Website
+title: UR5 & TurtleBot Collaboration using ROS2
 tags:
 - robotics
-- experimentation
+- ROS2
+- UR5
+- TurtleBot
 ---
 
-## About Our Project
+# UR5 & TurtleBot Collaboration using ROS2
 
-Welcome to the official website of **Team05**! We are a group of students working on robotics experimentation and deployment.
+## Project Overview
 
-### Key Features
-- Advanced robotics systems
-- Cutting-edge experimentation
-- Seamless deployment strategies
+- **Team Number**: [Your Team Number]
+- **Team Members**: [List Names]
+- **Semester and Year**: [Semester, Year]
+- **University, Class, Professor**: [University Name, Class Name, Professor Name]
 
-## Our Mission
-Our mission is to innovate and push the boundaries of robotics technology.
+## Research Question
 
-1. **Research**: We conduct in-depth research on robotics systems.
-2. **Development**: We build and test prototypes.
-3. **Deployment**: We deploy solutions in real-world scenarios.
+This project explores the collaborative capabilities between the UR5 robotic arm and TurtleBot using ROS2. The main objective is to design an integrated system where UR5 can pick and place objects, while TurtleBot navigates autonomously to interact with these objects. The research question focuses on optimizing inter-robot communication, improving object detection accuracy, and ensuring robust navigation in dynamic environments.
 
-> "Innovation is the key to the future." – Team05
+## System Architecture
 
+### Hardware Requirements
+
+- UR5 robotic arm (equipped with a gripper and camera)
+- TurtleBot3 Waffle Pi
+- RGB-D Camera (Intel Realsense D435, Azure Kinect, or Orbbec Astra Pro)
+- LiDAR (RPLiDAR A2M8 or Hokuyo) for TurtleBot navigation
+- Computing Units: Raspberry Pi 4 or Jetson Nano for TurtleBot, and a PC for UR5 control
+
+### Software Requirements
+
+- ROS2 Humble/Foxy
+- MoveIt2 (UR5 motion planning)
+- Nav2 (TurtleBot navigation)
+- Gazebo/Ignition (simulation)
+- YOLOv5/Mask R-CNN/OpenCV (object detection)
+- DDS (ROS2 inter-robot communication framework)
+
+## Sensor Integration
+
+### How Sensors Are Utilized
+
+- **Object Detection**: UR5’s camera detects objects using YOLOv5 and OpenCV.
+- **Navigation**: TurtleBot’s LiDAR and RGB-D camera are used for SLAM and object verification.
+- **Communication**: DDS enables real-time data exchange between UR5 and TurtleBot.
+
+## Interaction and Control
+
+- UR5 manipulator picks and places the object.
+- TurtleBot navigates to the drop location and verifies object placement.
+- TurtleBot either picks up the object or signals task completion.
+
+## Step-by-Step Implementation
+
+### UR5 Robot Setup
+
+1. Install UR5 Drivers & MoveIt2:
+   ```bash
+   sudo apt install ros-humble-ur5e-description
+   sudo apt install ros-humble-moveit
