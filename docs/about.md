@@ -16,20 +16,20 @@ Our mission is to innovate and push the boundaries of robotics by developing cut
 
 ## Meet the Team
 
-### John Doe
+### Asrith Pandreka
 - **Role**: Team Lead
 - **Expertise**: Robotics, Embedded Systems
-- **Bio**: John is a senior student with a passion for robotics and automation. He oversees the team's projects and ensures everything runs smoothly.
+- **Bio**: Asrith is a senior student with a passion for robotics and automation. He oversees the team's projects and ensures everything runs smoothly.
 
-### Jane Smith
+### Varun Karthik
 - **Role**: Software Developer
 - **Expertise**: Machine Learning, AI
-- **Bio**: Jane specializes in developing intelligent algorithms for robotics systems. She is responsible for the software architecture of our projects.
+- **Bio**: Varun specializes in developing intelligent algorithms for robotics systems. He is responsible for the software architecture of our projects.
 
-### Alex Johnson
+### Anjali Notani
 - **Role**: Hardware Engineer
 - **Expertise**: Circuit Design, Sensors
-- **Bio**: Alex focuses on designing and building the hardware components of our robotics systems. He ensures that our designs are both efficient and reliable.
+- **Bio**: Anjali focuses on designing and building the hardware components of our robotics systems. She ensures that our designs are both efficient and reliable.
 
 ## Our Projects
 
