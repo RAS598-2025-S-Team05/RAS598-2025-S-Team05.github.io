@@ -11,10 +11,10 @@ tags:
 
 ## Project Overview
 
-- **Team Number**: [Your Team Number]
-- **Team Members**: [List Names]
-- **Semester and Year**: [Semester, Year]
-- **University, Class, Professor**: [University Name, Class Name, Professor Name]
+- **Team Number**: 05
+- **Team Members**: Asrith Pandreka, Varun Karthik, Anjali Notani
+- **Semester and Year**: Spring 2025
+- **University, Class, Professor**: Arizona State University, RAS 598, Dr. Daniel Aukes
 
 ## Research Question
 
