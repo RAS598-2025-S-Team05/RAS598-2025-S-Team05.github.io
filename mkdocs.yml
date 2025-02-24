@@ -67,3 +67,6 @@ extra:
     - icon: fontawesome/regular/file-code
       link: /2023_fall
       name: 2023 Site    
+nav:
+  - Home: index.md
+  - About: about.md
