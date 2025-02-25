@@ -53,7 +53,6 @@ Our mission is to innovate and push the boundaries of robotics by developing cut
 
 If you have any questions or would like to collaborate with us, feel free to reach out:
 
-- **Email**: [team05@example.com](mailto:team05@example.com)
 - **GitHub**: [Team05 GitHub](https://github.com/RAS598-2025-S-Team05)
 - **Website**: [Team05 Website](https://ras598-2025-s-team05.github.io/)
 
