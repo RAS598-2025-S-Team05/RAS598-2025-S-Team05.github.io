@@ -27,6 +27,7 @@ Our team's project revolves around the integration of two distinct robotic syste
 The core research question of this project is: "How can two autonomous robotic systems be effectively integrated to collaborate on complex physical tasks involving object manipulation and retrieval in dynamic environments?" This study explores the potential for combining stationary and mobile robots to enhance task execution that single robots cannot perform alone. It focuses on the integration of robotic arms, mobile platforms, precise localization, and autonomous navigation within the Robot Operating System (ROS) framework. Additionally, the research assesses the system's adaptability to new and changing environments, essential for real-world applications.
 
 ### **Project Architecture Diagram**
+![Project Architecture](images/Project_archtecture.png)
 
 ## **2. Hardware and Software Requirements**
 
