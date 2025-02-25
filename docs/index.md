@@ -9,7 +9,7 @@ tags:
 
 # Coordinated Autonomy: UR5 & TurtleBot Navigating the Future Together
 
-## About Us
+## **About Us**
 
 - **Team Number**: 05
 - **Team Members**: Asrith Pandreka, Varun Karthik, Anjali Notani
@@ -18,46 +18,44 @@ tags:
 - **Class**: RAS598 Experimentation and Deployment of Robotics
 - **Advising Faculty**: Dr. Daniel Aukes
 
-## 1. Introduction
+## **1. Introduction**
 
-### Project Overview
+### **Project Overview**
 
 Our team's project revolves around the integration of two distinct robotic systems, the UR5 robotic arm and the TurtleBot, to perform collaborative object manipulation and retrieval tasks. The essence of the project lies in the ability of the UR5 to precisely place an object at a random, but predetermined location and then communicate the object’s coordinates to the TurtleBot. Utilizing its onboard camera and LiDAR systems, the TurtleBot then autonomously navigates to the location to retrieve or interact with the object. This setup exemplifies an advanced use of robotic collaboration, highlighting the potential for autonomous systems to work together to achieve complex tasks.
 
 The core research question of this project is: "How can two autonomous robotic systems be effectively integrated to collaborate on complex physical tasks involving object manipulation and retrieval in dynamic environments?" This study explores the potential for combining stationary and mobile robots to enhance task execution that single robots cannot perform alone. It focuses on the integration of robotic arms, mobile platforms, precise localization, and autonomous navigation within the Robot Operating System (ROS) framework. Additionally, the research assesses the system's adaptability to new and changing environments, essential for real-world applications.
 
-### Project Architecture Diagram
+### **Project Architecture Diagram**
 
-![Diagram](example_figure.png)
 
-## 3. Hardware and Software Requirements
+## **2. Hardware and Software Requirements**
+
 
 ### Hardware Components
 
-- **UR5 Robotic Arm**
-  - Used for object manipulation.
-  - Requires external camera for vision-based object localization.
+**UR5 Robotic Arm**
+  The UR5 robotic arm is used for object manipulation and requires an external camera for vision-based object localization. It plays a crucial role in picking and placing objects at designated locations.
 
-- **TurtleBot 4**
-  - Equipped with LiDAR, IMU, and Camera for navigation.
-  - Runs on a Jetson Nano (or Raspberry Pi) with ROS2.
+**TurtleBot 4**
+  The TurtleBot 4 is equipped with LiDAR, IMU, and a camera, enabling efficient navigation and mapping. It operates on a Jetson Nano (or Raspberry Pi) and runs ROS2, which facilitates autonomous movement and interaction with other robotic systems.
 
-- **External Camera**
-  - Used for detecting and localizing the object after UR5 placement.
+**External Camera**
+  Used for detecting and localizing the object after UR5 placement.
 
-- **Compute System**
-  - A laptop/workstation with Ubuntu and ROS2 installed for running the overall system.
+**Compute System**
+  A laptop/workstation with Ubuntu and ROS2 installed for running the overall system.
 
-- **Wireless Communication**
-  - TCP/IP or ROS2 communication between UR5 and TurtleBot.
+**Wireless Communication**
+  TCP/IP or ROS2 communication between UR5 and TurtleBot.
 
-### Software Components
+### **Software Components**
 
-- **Operating System:** Ubuntu 22.04 (for ROS2 support)
-- **Robotics Framework:** ROS2 (Humble)
-- **Simulation & Visualization:** RViz, Gazebo, or Webots
-- **Computer Vision:** OpenCV for object detection using the external camera
-- **SLAM & Navigation:**
+**Operating System:** Ubuntu 22.04 (for ROS2 support)
+**Robotics Framework:** ROS2 (Humble)
+**Simulation & Visualization:** RViz, Gazebo, or Webots
+**Computer Vision:** OpenCV for object detection using the external camera
+**SLAM & Navigation:**
   - SLAM Toolbox for mapping the environment
   - Nav2 Stack for path planning
 
@@ -66,7 +64,7 @@ The core research question of this project is: "How can two autonomous robotic s
 - Node for TurtleBot Navigation to Target
 - Communication node using ROS2 topics/services
 
-## 4. Sensor Integration and Interaction
+## **3. Sensor Integration and Interaction**
 
 | Sensor | Function in Project |
 | ------ | ------------------- |
@@ -76,28 +74,22 @@ The core research question of this project is: "How can two autonomous robotic s
 | IMU (TurtleBot 4) | Provides orientation data for navigation |
 | Encoders (UR5 & TurtleBot) | Measures movement and ensures accurate positioning |
 
-### Interaction
+### **Interaction**
 
-- **UR5 Object Detection & Placement**
-  - Use the external camera to detect the object.
-  - Determine the placement location.
-  - Move the UR5 to place the object at a random position.
-  - Record the object’s final position using vision-based estimation.
+**UR5 Object Detection & Placement**
+  The external camera is used to detect the object and determine the placement location. The UR5 then moves to place the object at a random position. Once placed, the object's final position is recorded using vision-based estimation.
 
-- **UR5 to TurtleBot Communication**
-  - Use ROS2 services or messages to send the object’s coordinates to TurtleBot.
+**UR5 to TurtleBot Communication**
+  ROS2 services or messages are used to send the object’s coordinates from the UR5 to the TurtleBot, ensuring effective communication for the next phase of the task.
 
-- **TurtleBot Navigation to Object**
-  - Utilize LiDAR and camera to localize itself in the environment.
-  - Use SLAM Toolbox to map the environment.
-  - Implement Nav2 stack for path planning.
-  - Use camera-based object detection for final approach.
+**TurtleBot Navigation to Object**
+  The TurtleBot localizes itself in the environment using LiDAR and its onboard camera. It utilizes the SLAM Toolbox to map the surroundings and implements the Nav2 stack for efficient path planning. As it approaches the object, camera-based object detection is used for precise final positioning.
 
-- **Final Object Verification**
-  - Upon reaching the coordinates, the TurtleBot’s camera verifies the object’s presence.
+**Final Object Verification**
+  Upon reaching the designated coordinates, the TurtleBot’s camera verifies the presence of the object, ensuring successful completion of the task.
 
 
-## 5. Control and Autonomy
+## **3. Control and Autonomy**
 
 ### UR5 Control:
 - The robotic arm will follow predefined motion paths for picking and placing the object using MoveIt! in ROS2.
@@ -112,7 +104,7 @@ The core research question of this project is: "How can two autonomous robotic s
 - The system will autonomously determine the best path for TurtleBot.
 - UR5 will confirm object placement before sending coordinates.
 
-## 6. Preparation Needs
+## **5. Preparation Needs**
 
 To successfully execute this project, the following preparations are necessary:
 
@@ -131,26 +123,20 @@ To successfully execute this project, the following preparations are necessary:
 ### Simulation Setup:
 - Running Gazebo simulations before physical implementation.  
 
-## 7. Final Demonstration Plan
+## **6. Final Demonstration Plan**
 
 The final demonstration will consist of:
 
 ### Initial Setup:
-- TurtleBot and UR5 are placed in an indoor environment with obstacles.
-- The object is placed in UR5's workspace by a human.
+The TurtleBot and UR5 are positioned in an indoor environment with obstacles, and a human places the object within the UR5's workspace.
 
 ### Execution:
-- UR5 picks the object and places it at a random location.
-- External camera detects the object's final position and sends coordinates to TurtleBot.
-- TurtleBot navigates to the object’s location using LiDAR and Nav2.
-- TurtleBot verifies object detection using its onboard camera.
+The UR5 picks up the object and places it at a random location. The external camera detects the object's final position and sends the coordinates to the TurtleBot. Using LiDAR and the Nav2 stack, the TurtleBot navigates to the object's location and verifies its presence using its onboard camera.
 
 ### Performance Metrics:
-- Success rate of object retrieval.
-- Accuracy of position estimation.
-- Navigation efficiency (time taken, obstacle avoidance).
+The system's performance is evaluated based on the success rate of object retrieval, the accuracy of position estimation, and navigation efficiency, including time taken and obstacle avoidance.
 
-## 8. Required Resources
+## **7. Required Resources**
 
 ### Hardware:
 - UR5 robotic arm with a gripper and RGB-D camera.
@@ -165,37 +151,30 @@ The final demonstration will consist of:
 - A small, area for the testing and demonstration.
 - Objects for the UR5 to pick and place.
 
-## 9. Testing & Evaluation Plan
+## **8. Testing & Evaluation Plan**
 
 ### **1. Unit Testing**
-- Test UR5 pick-and-place, TurtleBot navigation, and sensor accuracy.
+Test UR5 pick-and-place, TurtleBot navigation, and sensor accuracy.
 
 ### **2. Integration Testing**
-- Validate system performance in simulation and real-world scenarios.
+Validate system performance in simulation and real-world scenarios.
 
 ### **3. Performance Metrics**
-- Measure task completion time, object detection accuracy, and navigation success.
+Measure task completion time, object detection accuracy, and navigation success.
 
 ### **4. Error Handling**
-- Implement recovery strategies for object detection failures and navigation errors.
+Implement recovery strategies for object detection failures and navigation errors.
 
 ### **5. Final Demonstration**
-- Showcase end-to-end system functionality, obstacle handling, and adaptability.
+Showcase end-to-end system functionality, obstacle handling, and adaptability.
 
-## 10. Project Impact
+## **9. Project Impact**
 
-The project has the following impacts:
+This project advances multi-robot collaboration by integrating robotic arms with mobile robots, showcasing applications in warehousing and logistics for autonomous material handling. It contributes to research and development by exploring real-time sensor fusion, enhancing object localization, and improving robot perception strategies. Additionally, it serves as an educational tool for learning ROS2, SLAM, and perception systems.
 
-- **Advancement in Multi-Robot Collaboration:** Demonstrates the integration of robotic arms with mobile robots.
-- **Applications in Warehousing & Logistics:** The system can be adapted for autonomous material handling.
-- **Research & Development:**
-  - Investigates real-time sensor fusion techniques.
-  - Improves object localization and robot perception strategies.
-- **Educational Value:** The project will serve as a learning tool for ROS2, SLAM, and perception systems.
+## **10. Advising & Resource Needs**
 
-## 11. Advising & Resource Needs
-
-- **Advisor:** Prof. Daniel M Aukes
+**Advisor:** Prof. Daniel M Aukes
 
 ### Advisor's Role and Contribution
 Prof. Daniel M Aukes, an esteemed faculty member with deep expertise in SLAM (Simultaneous Localization and Mapping) and multi-robot coordination, will serve as the primary advisor for this project. Prof. Aukes brings a wealth of experience in robotic systems design and implementation, which will be invaluable for guiding the technical development and integration aspects of our project. His prior work, focusing on the application of innovative robotics solutions in real-world scenarios, will provide critical insights into our design and execution phases. 
