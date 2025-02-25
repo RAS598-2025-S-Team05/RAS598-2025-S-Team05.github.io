@@ -22,8 +22,8 @@ Our mission is to innovate and push the boundaries of robotics by developing cut
 - **Bio**: Asrith is a senior student with a passion for robotics and automation. He oversees the team's projects and ensures everything runs smoothly.
 
 ### Varun Karthik
-- **Role**: Software Developer
-- **Expertise**: Machine Learning, AI
+- **Role**: Hardware Design Developer
+- **Expertise**: Mechatronics, AI
 - **Bio**: Varun specializes in developing intelligent algorithms for robotics systems. He is responsible for the software architecture of our projects.
 
 ### Anjali Notani
