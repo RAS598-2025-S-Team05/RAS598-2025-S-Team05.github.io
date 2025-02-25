@@ -19,7 +19,7 @@ Our mission is to innovate and push the boundaries of robotics by developing cut
 ### Asrith Pandreka
 - **Role**: Team Lead
 - **Expertise**: Robotics, Embedded Systems
-- **Bio**: Asrith is a senior student with a passion for robotics and automation. He oversees the team's projects and ensures everything runs smoothly.
+- **Bio**: Asrith is a master's student with a passion for robotics and automation. He oversees the team's projects and ensures everything runs smoothly.
 
 ### Varun Karthik
 - **Role**: Hardware Design Developer
@@ -42,12 +42,6 @@ Our mission is to innovate and push the boundaries of robotics by developing cut
 - **Description**: Building a robotic arm for industrial automation.
 - **Technologies**: Arduino, Servo Motors, Kinematics
 - **Status**: Completed
-
-## Our Achievements
-
-- **2023 Robotics Competition**: 1st Place
-- **2022 Innovation Award**: Best Robotics Project
-- **2021 Hackathon**: Top 5 Finalists
 
 ## Contact Us
 
