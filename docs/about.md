@@ -22,7 +22,7 @@ Our mission is to innovate and push the boundaries of robotics by developing cut
 - **Bio**: Asrith is a master's student with a passion for robotics and automation. He oversees the team's projects and ensures everything runs smoothly.
 
 ### Varun Karthik
-- **Role**: Hardware Design Developer
+- **Role**: HW Design Developer
 - **Expertise**: Mechatronics, AI
 - **Bio**: Varun specializes in developing intelligent algorithms for robotics systems. He is responsible for the software architecture of our projects.
 
