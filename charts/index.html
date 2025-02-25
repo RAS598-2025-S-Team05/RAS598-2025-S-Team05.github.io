@@ -507,13 +507,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#state-diagram-system-states" class="md-nav__link">
-    State Diagram: System States
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -722,13 +715,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#state-diagram-system-states" class="md-nav__link">
-    State Diagram: System States
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -776,16 +762,6 @@ TurtleBot-&gt;&gt;SLAM: Update Map and Plan Path
 TurtleBot-&gt;&gt;Navigation: Move Towards Object Location
 Navigation--&gt;&gt;TurtleBot: Arrived at Target
 TurtleBot-&gt;&gt;UR5: Object Located Successfully</code></pre>
-<h2 id="state-diagram-system-states"><strong>State Diagram: System States</strong></h2>
-<pre class="mermaid"><code>stateDiagram-v2
-  [*] --&gt; Idle
-  Idle --&gt; Object_Pick[UR5 Picks Object]
-  Object_Pick --&gt; Object_Placed[UR5 Places Object Randomly]
-  Object_Placed --&gt; Capture_Position[Camera Captures Object Position]
-  Capture_Position --&gt; Send_Data[Send Position to TurtleBot]
-  Send_Data --&gt; Navigation_Active[TurtleBot Navigates to Object]
-  Navigation_Active --&gt; Object_Verification[TurtleBot Confirms Object Location]
-  Object_Verification --&gt; [*]</code></pre>
 
 
 
