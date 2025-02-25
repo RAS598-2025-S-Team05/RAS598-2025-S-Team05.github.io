@@ -29,16 +29,3 @@ TurtleBot->>Navigation: Move Towards Object Location
 Navigation-->>TurtleBot: Arrived at Target
 TurtleBot->>UR5: Object Located Successfully
 ```
-
-## **State Diagram: System States**
-```mermaid
-stateDiagram-v2
-  [*] --> Idle
-  Idle --> Object_Pick[UR5 Picks Object]
-  Object_Pick --> Object_Placed[UR5 Places Object Randomly]
-  Object_Placed --> Capture_Position[Camera Captures Object Position]
-  Capture_Position --> Send_Data[Send Position to TurtleBot]
-  Send_Data --> Navigation_Active[TurtleBot Navigates to Object]
-  Navigation_Active --> Object_Verification[TurtleBot Confirms Object Location]
-  Object_Verification --> [*]
-```
