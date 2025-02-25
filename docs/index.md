@@ -28,6 +28,8 @@ The core research question of this project is: "How can two autonomous robotic s
 
 ### Project Architecture Diagram
 
+![Diagram](example_figure.png)
+
 ## 3. Hardware and Software Requirements
 
 ### Hardware Components
