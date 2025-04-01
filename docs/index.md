@@ -50,6 +50,13 @@ The core research question of this project is: "How can two autonomous robotic s
 **Wireless Communication**
   TCP/IP or ROS2 communication between UR5 and TurtleBot.
 
+### **Interface Mockup**
+
+The GUI below illustrates the interface designed to monitor camera input, visualize IMU readings, and control TurtleBot functions. This prototype demonstrates interaction points such as camera control buttons, real-time visualization, and plot display for sensor feedback.
+
+![GUI Mockup](images/mockup.png)
+
+
 ### **Software Components**
 
 **Operating System:** Ubuntu 22.04 (for ROS2 support)
