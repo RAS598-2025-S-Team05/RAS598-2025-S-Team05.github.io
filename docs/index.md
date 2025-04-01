@@ -20,7 +20,7 @@ tags:
 
 ## **1. Introduction**
 
-### **Project Overview**
+### **Project Scope**
 
 Our team's project revolves around the integration of two distinct robotic systems, the UR5 robotic arm and the TurtleBot, to perform collaborative object manipulation and retrieval tasks. The essence of the project lies in the ability of the UR5 to precisely place an object at a random, but predetermined location and then communicate the object’s coordinates to the TurtleBot. Utilizing its onboard camera and LiDAR systems, the TurtleBot then autonomously navigates to the location to retrieve or interact with the object. This setup exemplifies an advanced use of robotic collaboration, highlighting the potential for autonomous systems to work together to achieve complex tasks.
 
