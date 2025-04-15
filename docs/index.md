@@ -33,7 +33,7 @@ This project investigates how autonomous systems can utilize ROS2 to process mul
 
 ### **Project Architecture Diagram**
 
-![Project Architecture](images/Project_archtecture.png)
+![Project Architecture](..images/Project_archtecture.png)
 
 ## **2. Hardware and Software Requirements**
 
@@ -53,7 +53,7 @@ Data is exchanged between ESP32 and Raspberry Pi via ROS2 topics.
 
 ### **Interface Mockup**
 
-![GUI Mockup](images/mockup.png)
+![GUI Mockup](..images/mockup.png)
 
 ### **Software Components**
 
