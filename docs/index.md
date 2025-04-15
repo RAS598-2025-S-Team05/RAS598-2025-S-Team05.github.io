@@ -82,7 +82,7 @@ Data is exchanged between ESP32 and Raspberry Pi via ROS2 topics.
 | LiDAR             | Provides real-time mapping and obstacle detection             |
 | TurtleBot IMU     | Supplies orientation and stability information for navigation |
 
-> *A low-pass filter is applied to the ESP32’s IMU data to eliminate high-frequency noise and improve heading stability.*
+> *A low-pass filter is applied to the ESP32’s IMU data to eliminate high-frequency noise and improve heading stability!*
 
 ## **4. Control Flow and Autonomy**
 
