@@ -1,5 +1,5 @@
 ---
-title: Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
+title: "Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32"
 tags:
 - robotics
 - ROS2
