@@ -29,7 +29,7 @@
 
     
       
-        <title>📡 Live Sensor Dashboard - RAS598 Team05</title>
+        <title>Sensor Dashboard - RAS598 Team05</title>
       
     
     
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#live-sensor-dashboard" class="md-skip">
+        <a href="#live-sensor-data-viewer" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              📡 Live Sensor Dashboard
+              Sensor Dashboard
             
           </span>
         </div>
@@ -277,7 +277,7 @@
   
     
   
-  📡 Live Sensor Dashboard
+  Sensor Dashboard
 
       </a>
     </li>
@@ -465,73 +465,15 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    📡 Live Sensor Dashboard
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    📡 Live Sensor Dashboard
+    Sensor Dashboard
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#live-camera-feed" class="md-nav__link">
-    🎥 Live Camera Feed
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#imu-sensor-acceleration-gyroscope" class="md-nav__link">
-    🌀 IMU Sensor (Acceleration &amp; Gyroscope)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lidar-scan" class="md-nav__link">
-    🌐 Lidar Scan
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gui-overview" class="md-nav__link">
-    🧠 GUI Overview
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -643,42 +585,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#live-camera-feed" class="md-nav__link">
-    🎥 Live Camera Feed
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#imu-sensor-acceleration-gyroscope" class="md-nav__link">
-    🌀 IMU Sensor (Acceleration &amp; Gyroscope)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lidar-scan" class="md-nav__link">
-    🌐 Lidar Scan
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gui-overview" class="md-nav__link">
-    🧠 GUI Overview
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -700,37 +606,53 @@
   
 
 
-<h1 id="live-sensor-dashboard">📡 Live Sensor Dashboard</h1>
-<p>This page demonstrates our real-time sensor feeds and visualizations from the TurtleBot platform, including camera, IMU, and Lidar.</p>
-<hr />
-<h2 id="live-camera-feed">🎥 Live Camera Feed</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Camera Feed" frameborder="0" allowfullscreen></iframe>
+<style>
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+}
+.camera-box, .lidar-box, .imu-box {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fdfdfd;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+}
+h2 {
+  text-align: center;
+}
+canvas, img, #imu_plot {
+  width: 100%;
+  height: auto;
+}
+</style>
 
-<blockquote>
-<p>Live video from topic <code>/rpi_07/oakd/rgb/preview/image_raw</code>, captured via OpenCV and published using a custom ROS2 GUI.</p>
-</blockquote>
-<hr />
-<h2 id="imu-sensor-acceleration-gyroscope">🌀 IMU Sensor (Acceleration &amp; Gyroscope)</h2>
-<p><a class="glightbox" href="../images/imu_plot.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="IMU Plot" src="../images/imu_plot.png" /></a></p>
-<ul>
-<li>Topic: <code>/rpi_07/imu</code></li>
-<li>Filtered using moving average</li>
-<li>Plotted using Matplotlib in real-time</li>
-</ul>
-<hr />
-<h2 id="lidar-scan">🌐 Lidar Scan</h2>
-<p><a class="glightbox" href="../images/lidar_scan.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Lidar" src="../images/lidar_scan.png" /></a></p>
-<ul>
-<li>Topic: <code>/rpi_07/scan</code></li>
-<li>Visualized using polar plot</li>
-<li>Highlights obstacles in red</li>
-</ul>
-<hr />
-<h2 id="gui-overview">🧠 GUI Overview</h2>
-<p><a class="glightbox" href="../images/gui_live.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="GUI Overview" src="../images/gui_live.png" /></a></p>
-<blockquote>
-<p>Our PyQt5-based GUI integrates the camera, IMU, and Lidar feeds in a single window with real-time updates.</p>
-</blockquote>
+<h1 id="live-sensor-data-viewer">🧠 Live Sensor Data Viewer</h1>
+<div class="dashboard">
+  <div class="camera-box">
+    <h2>📷 Camera Preview</h2>
+    <a class="glightbox" href="http://<ROBOT_IP" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img id="camera-feed" src="http://<ROBOT_IP></a>:8080/stream?topic=/camera/image_raw" alt="Camera Feed" />
+  </div>
+
+  <div class="lidar-box">
+    <h2>📡 LIDAR Visualization</h2>
+    <canvas id="lidar_canvas" width="500" height="400">LIDAR Display</canvas>
+  </div>
+
+  <div class="imu-box" style="grid-column: 1 / span 2;">
+    <h2>📈 IMU Angular Velocity</h2>
+    <div id="imu_plot" style="height:300px;"></div>
+  </div>
+</div>
+
+<!-- Libraries -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+<!-- Live ROS Dashboard Script -->
+<script src="/docs/javascripts/live_dashboard.js"></script>
 
 
 
