@@ -29,7 +29,7 @@
 
     
       
-        <title>Second Page - RAS598 Team05</title>
+        <title>📡 Live Sensor Dashboard - RAS598 Team05</title>
       
     
     
@@ -92,6 +92,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#live-sensor-dashboard" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -123,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Second Page
+              📡 Live Sensor Dashboard
             
           </span>
         </div>
@@ -272,7 +277,7 @@
   
     
   
-  Second Page
+  📡 Live Sensor Dashboard
 
       </a>
     </li>
@@ -457,16 +462,76 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    📡 Live Sensor Dashboard
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Second Page
+    📡 Live Sensor Dashboard
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#live-camera-feed" class="md-nav__link">
+    🎥 Live Camera Feed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imu-sensor-acceleration-gyroscope" class="md-nav__link">
+    🌀 IMU Sensor (Acceleration &amp; Gyroscope)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidar-scan" class="md-nav__link">
+    🌐 Lidar Scan
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gui-overview" class="md-nav__link">
+    🧠 GUI Overview
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -575,6 +640,44 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#live-camera-feed" class="md-nav__link">
+    🎥 Live Camera Feed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imu-sensor-acceleration-gyroscope" class="md-nav__link">
+    🌀 IMU Sensor (Acceleration &amp; Gyroscope)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lidar-scan" class="md-nav__link">
+    🌐 Lidar Scan
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gui-overview" class="md-nav__link">
+    🧠 GUI Overview
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -597,9 +700,37 @@
   
 
 
-  <h1>Second Page</h1>
+<h1 id="live-sensor-dashboard">📡 Live Sensor Dashboard</h1>
+<p>This page demonstrates our real-time sensor feeds and visualizations from the TurtleBot platform, including camera, IMU, and Lidar.</p>
+<hr />
+<h2 id="live-camera-feed">🎥 Live Camera Feed</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Camera Feed" frameborder="0" allowfullscreen></iframe>
 
-<p>Things to discuss</p>
+<blockquote>
+<p>Live video from topic <code>/rpi_07/oakd/rgb/preview/image_raw</code>, captured via OpenCV and published using a custom ROS2 GUI.</p>
+</blockquote>
+<hr />
+<h2 id="imu-sensor-acceleration-gyroscope">🌀 IMU Sensor (Acceleration &amp; Gyroscope)</h2>
+<p><a class="glightbox" href="../images/imu_plot.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="IMU Plot" src="../images/imu_plot.png" /></a></p>
+<ul>
+<li>Topic: <code>/rpi_07/imu</code></li>
+<li>Filtered using moving average</li>
+<li>Plotted using Matplotlib in real-time</li>
+</ul>
+<hr />
+<h2 id="lidar-scan">🌐 Lidar Scan</h2>
+<p><a class="glightbox" href="../images/lidar_scan.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Lidar" src="../images/lidar_scan.png" /></a></p>
+<ul>
+<li>Topic: <code>/rpi_07/scan</code></li>
+<li>Visualized using polar plot</li>
+<li>Highlights obstacles in red</li>
+</ul>
+<hr />
+<h2 id="gui-overview">🧠 GUI Overview</h2>
+<p><a class="glightbox" href="../images/gui_live.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="GUI Overview" src="../images/gui_live.png" /></a></p>
+<blockquote>
+<p>Our PyQt5-based GUI integrates the camera, IMU, and Lidar feeds in a single window with real-time updates.</p>
+</blockquote>
 
 
 
