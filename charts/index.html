@@ -607,33 +607,32 @@
 
 
 <h1 id="charts">Charts</h1>
-<p>```mermaid
-graph TD;
+<pre class="mermaid"><code>graph TD;
     A[🔄 Start System Initialization] --&gt;|Power Up &amp; Self Check| B
-    B[🤖 TurtleBot4: Activate Sensor Suite<br/><i>IMU, LiDAR, Camera, Odometry</i>] --&gt; C
-    C[🗺️ Perform SLAM &amp; Build Map<br/><i>LiDAR-based Environment Mapping</i>] --&gt; D
-    D[📡 ESP32: Transmit Target Coordinates<br/><i>Over Wireless Interface</i>] --&gt; E
-    E[🧭 ROS2: Convert Coordinates to Goal Pose<br/><i>Apply TF Transformations</i>] --&gt; F
-    F[🛣️ Nav2 Stack: Perform Global &amp; Local Planning<br/><i>Pathfinding with Obstacle Avoidance</i>] --&gt; G
-    G[🤖 TurtleBot4: Execute Motion Plan<br/><i>Navigate Autonomously to Target</i>] --&gt; H
-    H[📊 Collect Real-time Sensor Data<br/><i>IMU for Stability, LiDAR for Collision Avoidance</i>] --&gt; I
-    I[📍 Check Goal Reachability<br/><i>Feedback Loop from Navigation Result</i>] --&gt; J</p>
-<pre><code>J{✅ Has TurtleBot4 Reached Target?}
-J --&gt;|Yes| K
-J --&gt;|No: Replan &amp; Adjust Path| F
+    B[🤖 TurtleBot4: Activate Sensor Suite&lt;br/&gt;&lt;i&gt;IMU, LiDAR, Camera, Odometry&lt;/i&gt;] --&gt; C
+    C[🗺️ Perform SLAM &amp; Build Map&lt;br/&gt;&lt;i&gt;LiDAR-based Environment Mapping&lt;/i&gt;] --&gt; D
+    D[📡 ESP32: Transmit Target Coordinates&lt;br/&gt;&lt;i&gt;Over Wireless Interface&lt;/i&gt;] --&gt; E
+    E[🧭 ROS2: Convert Coordinates to Goal Pose&lt;br/&gt;&lt;i&gt;Apply TF Transformations&lt;/i&gt;] --&gt; F
+    F[🛣️ Nav2 Stack: Perform Global &amp; Local Planning&lt;br/&gt;&lt;i&gt;Pathfinding with Obstacle Avoidance&lt;/i&gt;] --&gt; G
+    G[🤖 TurtleBot4: Execute Motion Plan&lt;br/&gt;&lt;i&gt;Navigate Autonomously to Target&lt;/i&gt;] --&gt; H
+    H[📊 Collect Real-time Sensor Data&lt;br/&gt;&lt;i&gt;IMU for Stability, LiDAR for Collision Avoidance&lt;/i&gt;] --&gt; I
+    I[📍 Check Goal Reachability&lt;br/&gt;&lt;i&gt;Feedback Loop from Navigation Result&lt;/i&gt;] --&gt; J
 
-K[📈 Log Metrics &amp; Final Position&lt;br/&gt;&lt;i&gt;Store for Analysis&lt;/i&gt;] --&gt; L
-L[🧠 Optimize Parameters&lt;br/&gt;&lt;i&gt;Update SLAM, TF, Nav Configs&lt;/i&gt;] --&gt; A
+    J{✅ Has TurtleBot4 Reached Target?}
+    J --&gt;|Yes| K
+    J --&gt;|No: Replan &amp; Adjust Path| F
 
-%% Styling
-classDef startStyle fill:#CAAEFF,stroke:#333,stroke-width:2px;
-classDef processStyle fill:#85D3FF,stroke:#333,stroke-width:1px;
-classDef decisionStyle fill:#ff6666,stroke:#333,stroke-width:1px,font-weight:bold;
+    K[📈 Log Metrics &amp; Final Position&lt;br/&gt;&lt;i&gt;Store for Analysis&lt;/i&gt;] --&gt; L
+    L[🧠 Optimize Parameters&lt;br/&gt;&lt;i&gt;Update SLAM, TF, Nav Configs&lt;/i&gt;] --&gt; A
 
-class A startStyle;
-class B,C,D,E,F,G,H,I,K,L processStyle;
-class J decisionStyle;
-</code></pre>
+    %% Styling
+    classDef startStyle fill:#CAAEFF,stroke:#333,stroke-width:2px;
+    classDef processStyle fill:#85D3FF,stroke:#333,stroke-width:1px;
+    classDef decisionStyle fill:#ff6666,stroke:#333,stroke-width:1px,font-weight:bold;
+
+    class A startStyle;
+    class B,C,D,E,F,G,H,I,K,L processStyle;
+    class J decisionStyle;</code></pre>
 
 
 
