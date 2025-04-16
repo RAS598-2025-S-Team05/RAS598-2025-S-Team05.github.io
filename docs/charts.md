@@ -1,31 +1,17 @@
----
-title: Project Implementation Process
----
+## 🚀 TurtleBot4 Navigation Flow
 
-## **Flowchart: Project Workflow**
 ```mermaid
-graph TD
-  A[Start] --> B{UR5 Object Placement};
-  B -->|Object Placed| C[Detect Position with Camera];
-  C -->|Extract Coordinates| D[Send Data to TurtleBot];
-  D -->|Coordinates Received| E[SLAM Navigation Initiated];
-  E -->|Path Planning| F[TurtleBot Navigates to Object];
-  F -->|Verifies Object Location| G[End];
-```
-
-## **Sequence Diagram: Communication Between UR5 and TurtleBot**
-```mermaid
-sequenceDiagram
-autonumber
-participant UR5
-participant Camera
-participant TurtleBot
-
-UR5->>Camera: Capture Object Position
-Camera-->>UR5: Return Object Coordinates
-UR5->>TurtleBot: Send Object Coordinates
-TurtleBot->>SLAM: Update Map and Plan Path
-TurtleBot->>Navigation: Move Towards Object Location
-Navigation-->>TurtleBot: Arrived at Target
-TurtleBot->>UR5: Object Located Successfully
-```
+graph TD;
+  A[🔧 Start System Initialization] -->|Power Up & Self Check| B[🤖 TurtleBot4: Activate Sensor Suite]
+  B --> C[🧭 IMU, LiDAR, Camera, Odometry: Perform SLAM & Build Map]
+  C --> D[📡 ESP32: Transmit Target Coordinates]
+  D --> E[🌐 ROS2: Convert Coordinates to Goal Pose]
+  E --> F[🗺️ Nav2 Stack: Global & Local Planning]
+  F --> G[🤖 Execute Motion Plan]
+  G --> H[📊 Collect Real-time Sensor Data]
+  H --> I[📍 Check Goal Reachability]
+  I --> J{✅ Has TurtleBot4 Reached Target?}
+  J -->|Yes| K[📈 Log Metrics & Final Position]
+  K --> L[🧠 Optimize Parameters & Update Configs]
+  L --> A
+  J -->|No| F
