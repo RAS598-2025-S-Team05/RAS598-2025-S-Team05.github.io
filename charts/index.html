@@ -2,105 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Project Timeline – Interactive Gantt Chart</title>
+  <title>Project Timeline – Autonomous Target Navigation System</title>
   <script src="https://cdn.jsdelivr.net/npm/frappe-gantt@0.5.0/dist/frappe-gantt.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt@0.5.0/dist/frappe-gantt.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f9;
       margin: 0;
+      padding: 40px 20px;
     }
     h2 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      color: #2c3e50;
     }
     #gantt {
       max-width: 1000px;
       margin: auto;
-      background: white;
-      border: 1px solid #ccc;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       padding: 20px;
-      border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
-  <h2>📅 Interactive Gantt Chart: TurtleBot Final Project</h2>
+  <h2>📅 TurtleBot4 Autonomous Target Navigation – Development Timeline</h2>
   <div id="gantt"></div>
 
   <script>
     const tasks = [
       {
         id: "Task1",
-        name: "TurtleBot Activation + ROS2 Node Initialization",
+        name: "Hardware Initialization & Platform Bring-Up",
         start: "2024-03-11",
         end: "2024-03-17",
         progress: 100,
       },
       {
         id: "Task2",
-        name: "Camera Node + Obstacle Detection",
+        name: "Create® 3 Firmware Configuration & Base Control Validation",
         start: "2024-03-18",
         end: "2024-03-24",
         progress: 100,
       },
       {
         id: "Task3",
-        name: "IMU Filtering + GUI Display",
+        name: "IMU Signal Conditioning & Telemetry Visualization",
         start: "2024-03-25",
         end: "2024-03-31",
         progress: 100,
       },
       {
         id: "Task4",
-        name: "LiDAR Node Setup + SLAM Testing",
+        name: "LiDAR Node Integration & SLAM Pipeline Setup",
         start: "2024-04-01",
         end: "2024-04-07",
         progress: 100,
       },
       {
         id: "Task5",
-        name: "Mapping with SLAM",
+        name: "Occupancy Grid Generation & Map Optimization",
         start: "2024-04-08",
         end: "2024-04-14",
         progress: 100,
       },
       {
         id: "Task6",
-        name: "Path Planning + Nav2 Setup",
+        name: "ESP32-to-ROS Interface & Target Pose Translation",
         start: "2024-04-15",
-        end: "2024-04-21",
-        progress: 80,
+        end: "2024-04-19",
+        progress: 70,
       },
       {
         id: "Task7",
-        name: "GUI: Displaying Live Data",
-        start: "2024-04-22",
-        end: "2024-04-28",
-        progress: 50,
+        name: "TF Tree Calibration & Frame Alignment",
+        start: "2024-04-20",
+        end: "2024-04-23",
+        progress: 30,
       },
       {
         id: "Task8",
-        name: "Full System Integration",
-        start: "2024-04-29",
-        end: "2024-05-03",
-        progress: 0,
+        name: "Path Planning Module Integration with Nav2 Stack",
+        start: "2024-04-24",
+        end: "2024-04-28",
+        progress: 10,
       },
       {
         id: "Task9",
-        name: "Final Testing",
-        start: "2024-05-04",
-        end: "2024-05-06",
+        name: "System Integration, Tuning & Validation",
+        start: "2024-04-29",
+        end: "2024-05-01",
         progress: 0,
       },
       {
         id: "Task10",
-        name: "Demo + Report + Video Upload",
-        start: "2024-05-07",
-        end: "2024-05-07",
+        name: "Final Field Test, Demonstration & Deliverables Submission",
+        start: "2024-05-02",
+        end: "2024-05-02",
         progress: 0,
       }
     ];
