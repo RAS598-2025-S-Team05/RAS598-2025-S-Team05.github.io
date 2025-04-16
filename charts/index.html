@@ -1,146 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Project Timeline – Autonomous Target Navigation System</title>
-  <script src="https://cdn.jsdelivr.net/npm/frappe-gantt@0.5.0/dist/frappe-gantt.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt@0.5.0/dist/frappe-gantt.css">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f7f9;
-      margin: 0;
-      padding: 40px 20px;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      color: #2c3e50;
-    }
-    #gantt {
-      max-width: 1000px;
-      margin: auto;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      padding: 20px;
-    }
-    .legend {
-      max-width: 1000px;
-      margin: 30px auto 0 auto;
-      display: flex;
-      justify-content: space-around;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      padding: 15px 10px;
-      font-size: 14px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .color-box {
-      width: 18px;
-      height: 18px;
-      border-radius: 3px;
-    }
-    .done { background: #28a745; }
-    .in-progress { background: #ffc107; }
-    .not-started { background: #dc3545; }
-  </style>
-</head>
-<body>
-
-  <h2>📅 TurtleBot4 Autonomous Target Navigation – Development Timeline</h2>
-  <div id="gantt"></div>
-
-  <div class="legend">
-    <div class="legend-item"><div class="color-box done"></div>Completed (100%)</div>
-    <div class="legend-item"><div class="color-box in-progress"></div>In Progress (1–99%)</div>
-    <div class="legend-item"><div class="color-box not-started"></div>Not Started (0%)</div>
+<!-- Add this below your Gantt container -->
+<div class="legend">
+  <div class="legend-item">
+    <div class="color-box bar-complete"></div> Completed / In Progress
   </div>
+  <div class="legend-item">
+    <div class="color-box bar-future"></div> Scheduled (Upcoming)
+  </div>
+</div>
 
-  <script>
-    const tasks = [
-      {
-        id: "Task1",
-        name: "Hardware Initialization & Platform Bring-Up",
-        start: "2024-03-11",
-        end: "2024-03-17",
-        progress: 100,
-      },
-      {
-        id: "Task2",
-        name: "Create® 3 Firmware Configuration & Base Control Validation",
-        start: "2024-03-18",
-        end: "2024-03-24",
-        progress: 100,
-      },
-      {
-        id: "Task3",
-        name: "IMU Signal Conditioning & Telemetry Visualization",
-        start: "2024-03-25",
-        end: "2024-03-31",
-        progress: 100,
-      },
-      {
-        id: "Task4",
-        name: "LiDAR Node Integration & SLAM Pipeline Setup",
-        start: "2024-04-01",
-        end: "2024-04-07",
-        progress: 100,
-      },
-      {
-        id: "Task5",
-        name: "Occupancy Grid Generation & Map Optimization",
-        start: "2024-04-08",
-        end: "2024-04-14",
-        progress: 100,
-      },
-      {
-        id: "Task6",
-        name: "ESP32-to-ROS Interface & Target Pose Translation",
-        start: "2024-04-15",
-        end: "2024-04-19",
-        progress: 70,
-      },
-      {
-        id: "Task7",
-        name: "TF Tree Calibration & Frame Alignment",
-        start: "2024-04-20",
-        end: "2024-04-23",
-        progress: 30,
-      },
-      {
-        id: "Task8",
-        name: "Path Planning Module Integration with Nav2 Stack",
-        start: "2024-04-24",
-        end: "2024-04-28",
-        progress: 10,
-      },
-      {
-        id: "Task9",
-        name: "System Integration, Tuning & Validation",
-        start: "2024-04-29",
-        end: "2024-05-01",
-        progress: 0,
-      },
-      {
-        id: "Task10",
-        name: "Final Field Test, Demonstration & Deliverables Submission",
-        start: "2024-05-02",
-        end: "2024-05-02",
-        progress: 0,
-      }
-    ];
+<style>
+  .legend {
+    max-width: 1000px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    padding: 15px 10px;
+    font-size: 14px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .color-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+  }
 
-    new Gantt("#gantt", tasks, {
-      view_mode: "Week",
-      language: "en"
-    });
-  </script>
-
-</body>
-</html>
+  /* Match Frappe Gantt’s bar fill */
+  .bar-complete {
+    background: #8a7ee8; /* Progress bar fill */
+  }
+  .bar-future {
+    background: #d3d3d3; /* Background / upcoming portion */
+  }
+</style>
