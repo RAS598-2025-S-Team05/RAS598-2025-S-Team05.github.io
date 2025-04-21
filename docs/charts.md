@@ -1,31 +1,30 @@
----
-title: Project Implementation Process
----
+# Charts
 
-## **Flowchart: Project Workflow**
 ```mermaid
-graph TD
-  A[Start] --> B{UR5 Object Placement};
-  B -->|Object Placed| C[Detect Position with Camera];
-  C -->|Extract Coordinates| D[Send Data to TurtleBot];
-  D -->|Coordinates Received| E[SLAM Navigation Initiated];
-  E -->|Path Planning| F[TurtleBot Navigates to Object];
-  F -->|Verifies Object Location| G[End];
-```
+graph TD;
+    A[🔄 Start System Initialization] -->|Power Up & Self Check| B
+    B[🤖 TurtleBot4: Activate Sensor Suite<br/><i>IMU, LiDAR, Camera, Odometry</i>] --> C
+    C[🗺️ Perform SLAM & Build Map<br/><i>LiDAR-based Environment Mapping</i>] --> D
+    D[📡 ESP32: Transmit Target Coordinates<br/><i>Over Wireless Interface</i>] --> E
+    E[🧭 ROS2: Convert Coordinates to Goal Pose<br/><i>Apply TF Transformations</i>] --> F
+    F[🛣️ Nav2 Stack: Perform Global & Local Planning<br/><i>Pathfinding with Obstacle Avoidance</i>] --> G
+    G[🤖 TurtleBot4: Execute Motion Plan<br/><i>Navigate Autonomously to Target</i>] --> H
+    H[📊 Collect Real-time Sensor Data<br/><i>IMU for Stability, LiDAR for Collision Avoidance</i>] --> I
+    I[📍 Check Goal Reachability<br/><i>Feedback Loop from Navigation Result</i>] --> J
 
-## **Sequence Diagram: Communication Between UR5 and TurtleBot**
-```mermaid
-sequenceDiagram
-autonumber
-participant UR5
-participant Camera
-participant TurtleBot
+    J{✅ Has TurtleBot4 Reached Target?}
+    J -->|Yes| K
+    J -->|No: Replan & Adjust Path| F
 
-UR5->>Camera: Capture Object Position
-Camera-->>UR5: Return Object Coordinates
-UR5->>TurtleBot: Send Object Coordinates
-TurtleBot->>SLAM: Update Map and Plan Path
-TurtleBot->>Navigation: Move Towards Object Location
-Navigation-->>TurtleBot: Arrived at Target
-TurtleBot->>UR5: Object Located Successfully
+    K[📈 Log Metrics & Final Position<br/><i>Store for Analysis</i>] --> L
+    L[🧠 Optimize Parameters<br/><i>Update SLAM, TF, Nav Configs</i>] --> A
+
+    %% Styling
+    classDef startStyle fill:#CAAEFF,stroke:#333,stroke-width:2px;
+    classDef processStyle fill:#85D3FF,stroke:#333,stroke-width:1px;
+    classDef decisionStyle fill:#ff6666,stroke:#333,stroke-width:1px,font-weight:bold;
+
+    class A startStyle;
+    class B,C,D,E,F,G,H,I,K,L processStyle;
+    class J decisionStyle;
 ```
