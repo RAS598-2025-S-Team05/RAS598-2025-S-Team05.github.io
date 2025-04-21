@@ -34,7 +34,7 @@ This project investigates how autonomous systems can utilize ROS2 to process mul
 ### **Project Architecture Diagram**
 
 
-![Project Architecture](../images/Project_architecture.png)
+![System Architecture](../images/System_Architecture.jpg)
 
 
 ## **2. Hardware and Software Requirements**
