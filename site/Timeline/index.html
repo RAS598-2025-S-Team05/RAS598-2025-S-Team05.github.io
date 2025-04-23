@@ -21,7 +21,7 @@
         <link rel="next" href="../about/">
       
       
-      <link rel="icon" href="../static/logo.png">
+      <link rel="icon" href="../static/ras.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
             
 
@@ -29,7 +29,7 @@
 
     
       
-        <title>Project Timeline - EGR314 Report Template</title>
+        <title>Project Timeline - RAS598 Team05</title>
       
     
     
@@ -51,7 +51,72 @@
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}
+          body {
+            font-family: 'Segoe UI', sans-serif;
+            
+          }
+      
+          h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 30px;
+          }
+      
+          .gantt {
+            display: grid;
+            grid-template-columns: 100px repeat(10, 1fr);
+            gap: 2px;
+            align-items: center;
+          }
+      
+          .gantt .label {
+            font-weight: bold;
+            background: #eeeeee;
+            text-align: right;
+            padding-right: 10px;
+            font-size: 15px;
+          }
+      
+          .bar {
+            height: 30px;
+            line-height: 30px;
+            color: white;
+            padding-left: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+          }
+      
+          .bar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+          }
+      
+          .green { background-color: #4CAF50; }
+          .yellow { background-color: #FFB300; }
+          .gray { background-color: #888888; }
+      
+          .empty {
+            background-color: transparent;
+          }
+      
+          .week-labels {
+            display: grid;
+            grid-template-columns: 100px repeat(10, 1fr);
+            font-weight: bold;
+            margin-top: 30px;
+            font-size: 13px;
+          }
+      
+          .week-labels div {
+            text-align: center;
+            padding-top: 5px;
+          }
+        </style>
       
     
     
@@ -83,7 +148,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -108,7 +173,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="EGR314 Report Template" class="md-header__button md-logo" aria-label="EGR314 Report Template" data-md-component="logo">
+    <a href=".." title="RAS598 Team05" class="md-header__button md-logo" aria-label="RAS598 Team05" data-md-component="logo">
       
   <img src="../static/logo.svg" alt="logo">
 
@@ -121,7 +186,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            EGR314 Report Template
+            RAS598 Team05
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -207,7 +272,7 @@
   
     
   
-  Index
+  Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
 
       </a>
     </li>
@@ -260,7 +325,7 @@
   
     
   
-  Project Implementation Process
+  Charts
 
       </a>
     </li>
@@ -277,7 +342,7 @@
   
     
   
-  Second Page
+  Second page
 
       </a>
     </li>
@@ -352,12 +417,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="EGR314 Report Template" class="md-nav__button md-logo" aria-label="EGR314 Report Template" data-md-component="logo">
+    <a href=".." title="RAS598 Team05" class="md-nav__button md-logo" aria-label="RAS598 Team05" data-md-component="logo">
       
   <img src="../static/logo.svg" alt="logo">
 
     </a>
-    EGR314 Report Template
+    RAS598 Team05
   </label>
   
     <div class="md-nav__source">
@@ -385,7 +450,7 @@
         
   
   <span class="md-ellipsis">
-    Index
+    Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
     
   </span>
   
@@ -494,7 +559,7 @@
         
   
   <span class="md-ellipsis">
-    Project Implementation Process
+    Charts
     
   </span>
   
@@ -515,7 +580,7 @@
         
   
   <span class="md-ellipsis">
-    Second Page
+    Second page
     
   </span>
   
@@ -670,123 +735,63 @@
           
           
             <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
+              <h2>Final Gantt Chart with Updated Week 14 &amp; 15 Keywords</h2>
 
+<div class="gantt">
+  <div class="label">Week 7</div>
+  <div class="bar green" style="grid-column: 2 / span 2;">TurtleBot Activation</div>
+  <div class="empty" style="grid-column: span 8;"></div>
 
-  
-    <a href="https://github.com/embedded-systems-design/template_report/edit/main/docs/Timeline.md" title="Edit this page" class="md-content__button md-icon">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
-    </a>
-  
-  
+  <div class="label">Week 8</div>
+  <div class="empty" style="grid-column: 2;"></div>
+  <div class="bar green" style="grid-column: span 2;">Camera Node +</div>
+  <div class="empty" style="grid-column: span 7;"></div>
 
+  <div class="label">Week 9</div>
+  <div class="empty" style="grid-column: 3;"></div>
+  <div class="bar green" style="grid-column: span 2;">IMU Filtering + GUI</div>
+  <div class="empty" style="grid-column: span 6;"></div>
 
-  <h1>Project Timeline</h1>
+  <div class="label">Week 10</div>
+  <div class="empty" style="grid-column: 4;"></div>
+  <div class="bar green" style="grid-column: span 2;">LiDAR + SLAM</div>
+  <div class="empty" style="grid-column: span 5;"></div>
 
-<h2 id="weekly-milestones"><strong>Weekly Milestones</strong></h2>
-<table>
-<thead>
-<tr>
-<th>Week</th>
-<th>Hardware Integration</th>
-<th>Interface Development</th>
-<th>Sensor Processing</th>
-<th>Controls &amp; Autonomy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Week 7 (March 1-7)</strong></td>
-<td>Setup UR5 and TurtleBot hardware</td>
-<td>Design initial UI mockups for monitoring</td>
-<td>Capture initial sensor data (camera, LiDAR, IMU)</td>
-<td>Basic ROS2 node setup for communication</td>
-</tr>
-<tr>
-<td><strong>Week 8 (March 8-14)</strong></td>
-<td>Test UR5 pick-and-place mechanism</td>
-<td>Develop ROS2-based interaction dashboard</td>
-<td>Implement object detection using OpenCV</td>
-<td>Integrate sensor feedback into navigation system</td>
-</tr>
-<tr>
-<td><strong>Week 9 (March 15-21)</strong></td>
-<td>Tune external camera and UR5 grasping accuracy</td>
-<td>Display real-time sensor data on UI</td>
-<td>Test LiDAR-based mapping and obstacle detection</td>
-<td>Implement LiDAR-based path planning</td>
-</tr>
-<tr>
-<td><strong>Week 10 (March 22-28)</strong></td>
-<td>Establish wireless communication between UR5 &amp; TurtleBot</td>
-<td>Enable remote UI control for robot monitoring</td>
-<td>Merge object detection data with LiDAR maps</td>
-<td>Implement TurtleBot navigation using Nav2</td>
-</tr>
-<tr>
-<td><strong>Week 11 (March 29-April 4)</strong></td>
-<td>Conduct real-world object placement tests</td>
-<td>Enhance visualization of navigation path</td>
-<td>Improve SLAM performance for precise localization</td>
-<td>Implement adaptive obstacle avoidance</td>
-</tr>
-<tr>
-<td><strong>Week 12 (April 5-11)</strong></td>
-<td>Coordinate multi-robot operation</td>
-<td>Finalize GUI for monitoring &amp; debugging</td>
-<td>Improve real-time sensor fusion for accuracy</td>
-<td>Validate navigation and target localization</td>
-</tr>
-<tr>
-<td><strong>Week 13 (April 12-18)</strong></td>
-<td>Final hardware testing and debugging</td>
-<td>Ensure UI usability for real-time monitoring</td>
-<td>Cross-validate sensor data for robustness</td>
-<td>Final integration of UR5 and TurtleBot behavior</td>
-</tr>
-<tr>
-<td><strong>Week 14 (April 19-25)</strong></td>
-<td>Optimize data transmission &amp; system response time</td>
-<td>Finalize UI for seamless operation</td>
-<td>Conduct robustness tests for mapping accuracy</td>
-<td>Refine object approach and handling behaviors</td>
-</tr>
-<tr>
-<td><strong>Week 15 (April 26-28)</strong></td>
-<td>Final debugging and error corrections</td>
-<td>Ensure UI responsiveness and usability</td>
-<td>Cross-validate object localization and mapping</td>
-<td>Ensure seamless execution of task sequences</td>
-</tr>
-<tr>
-<td><strong>Week 16 (April 29-30)</strong></td>
-<td>Conduct final demo &amp; evaluation</td>
-<td>Document findings and prepare report</td>
-<td>Analyze performance and accuracy metrics</td>
-<td>Present results and future scope recommendations</td>
-</tr>
-</tbody>
-</table>
+  <div class="label">Week 11</div>
+  <div class="empty" style="grid-column: 5;"></div>
+  <div class="bar green" style="grid-column: span 2;">Mapping with SLAM</div>
+  <div class="empty" style="grid-column: span 4;"></div>
 
+  <div class="label">Week 12</div>
+  <div class="empty" style="grid-column: 6;"></div>
+  <div class="bar yellow" style="grid-column: span 2;">Path Planning +</div>
+  <div class="empty" style="grid-column: span 3;"></div>
 
+  <div class="label">Week 13</div>
+  <div class="empty" style="grid-column: 7;"></div>
+  <div class="bar yellow" style="grid-column: span 2;">GUI: Live Data</div>
+  <div class="empty" style="grid-column: span 2;"></div>
 
+  <div class="label">Week 14</div>
+  <div class="empty" style="grid-column: 8;"></div>
+  <div class="bar gray" style="grid-column: span 2;">Full Integration</div>
+  <div class="empty"></div>
 
+  <div class="label">Week 15</div>
+  <div class="empty" style="grid-column: 9;"></div>
+  <div class="bar gray" style="grid-column: span 1;">Final</div>
+  <div class="empty" style="grid-column: span 1;"></div>
 
+  <div class="label">Week 16</div>
+  <div class="empty" style="grid-column: 10;"></div>
+  <div class="bar gray" style="grid-column: span 1;">Demo +</div>
+</div>
 
-
-  
-  
-
-
-
-
-
-
-                
-              </article>
+<div class="week-labels">
+  <div></div>
+  <div>W7</div><div>W8</div><div>W9</div><div>W10</div><div>W11</div>
+  <div>W12</div><div>W13</div><div>W14</div><div>W15</div><div>W16</div>
+</div>
             </div>
           
           
@@ -808,7 +813,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Index">
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -818,7 +823,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Index
+                Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
               </div>
             </div>
           </a>
