@@ -1,0 +1,1441 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta name="robots" content="nofollow" />
+
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://embedded-systems-design.github.io/template_report/">
+      
+      
+      
+        <link rel="next" href="Timeline/">
+      
+      
+      <link rel="icon" href="static/ras.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+            
+
+        
+
+    
+      
+        <title>Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32 - RAS598 Team05</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#coordinated-autonomy-goal-oriented-navigation-with-turtlebot-and-esp32" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="RAS598 Team05" class="md-header__button md-logo" aria-label="RAS598 Team05" data-md-component="logo">
+      
+  <img src="static/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RAS598 Team05
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/embedded-systems-design/template_report" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+    
+  
+  Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="Timeline/" class="md-tabs__link">
+        
+  
+    
+  
+  Project Timeline
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="about/" class="md-tabs__link">
+        
+  
+    
+  
+  About Us
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="charts/" class="md-tabs__link">
+        
+  
+    
+  
+  Charts
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="second-page/" class="md-tabs__link">
+        
+  
+    
+  
+  Second page
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="component-selection-example/" class="md-tabs__link">
+          
+  
+    
+  
+  Component selection example
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="subfolder/" class="md-tabs__link">
+          
+  
+    
+  
+  Subfolder
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="RAS598 Team05" class="md-nav__button md-logo" aria-label="RAS598 Team05" data-md-component="logo">
+      
+  <img src="static/logo.svg" alt="logo">
+
+    </a>
+    RAS598 Team05
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/embedded-systems-design/template_report" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-us" class="md-nav__link">
+    <span class="md-ellipsis">
+      About Us
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Architecture Diagram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hardware-and-software-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Hardware and Software Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Hardware and Software Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-mockup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Mockup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensor-integration-and-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Sensor Integration and Interaction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-control-flow-and-autonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Control Flow and Autonomy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Control Flow and Autonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esp32-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 → Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensor-processing-on-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensor Processing on Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autonomous-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autonomous Control
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-preparation-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Preparation Needs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-final-demonstration-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Final Demonstration Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Final Demonstration Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing-and-evaluation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Testing and Evaluation Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Testing and Evaluation Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unit-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Unit Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Integration Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-performance-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Performance Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-project-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Project Impact
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-advising-and-resource-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Advising and Resource Needs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Timeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Us
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="charts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Charts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="second-page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Second page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="component-selection-example/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Component selection example
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="subfolder/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Subfolder
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-us" class="md-nav__link">
+    <span class="md-ellipsis">
+      About Us
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Architecture Diagram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-hardware-and-software-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Hardware and Software Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Hardware and Software Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-mockup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Mockup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensor-integration-and-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Sensor Integration and Interaction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-control-flow-and-autonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Control Flow and Autonomy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Control Flow and Autonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esp32-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 → Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensor-processing-on-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sensor Processing on Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autonomous-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autonomous Control
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-preparation-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Preparation Needs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-final-demonstration-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Final Demonstration Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Final Demonstration Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing-and-evaluation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Testing and Evaluation Plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Testing and Evaluation Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unit-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Unit Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Integration Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-performance-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Performance Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-project-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Project Impact
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-advising-and-resource-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Advising and Resource Needs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/embedded-systems-design/template_report/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="coordinated-autonomy-goal-oriented-navigation-with-turtlebot-and-esp32">Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32</h1>
+<h2 id="about-us"><strong>About Us</strong></h2>
+<ul>
+<li><strong>Team Number</strong>: 05  </li>
+<li><strong>Team Members</strong>: Asrith Pandreka, Varun Karthik, Anjali Notani  </li>
+<li><strong>Semester and Year</strong>: Spring 2025  </li>
+<li><strong>University</strong>: Arizona State University  </li>
+<li><strong>Class</strong>: RAS598 Experimentation and Deployment of Robotics  </li>
+<li><strong>Advising Faculty</strong>: Dr. Daniel Aukes  </li>
+</ul>
+<h2 id="1-introduction"><strong>1. Introduction</strong></h2>
+<h3 id="project-scope"><strong>Project Scope</strong></h3>
+<p>Our current project focuses on enabling autonomous navigation and control for a TurtleBot 4 using integrated sensor data and remote coordination. It centers around mobile robot navigation in indoor environments using a combination of real-time data and remote commands.</p>
+<p>The system integrates a TurtleBot equipped with LiDAR, IMU, and a camera, communicating with a Raspberry Pi running ROS2. Additionally, an ESP32 microcontroller equipped with an IMU is used to send goal coordinates wirelessly to the Raspberry Pi. Based on this input and onboard sensor data, the Raspberry Pi processes information for mapping, control, path planning, and navigation.</p>
+<p>The revised core research question is:<br />
+<strong>"How can sensor fusion and real-time feedback be used to enable autonomous indoor navigation of a mobile robot based on external goal coordinates?"</strong></p>
+<p>This project investigates how autonomous systems can utilize ROS2 to process multi-sensor inputs for effective localization, navigation, and decision-making. It emphasizes integrating low-cost microcontrollers, real-time feedback loops, and live data visualization to enhance autonomy.</p>
+<h3 id="project-architecture-diagram"><strong>Project Architecture Diagram</strong></h3>
+<p><a class="glightbox" href="images/system_architecture.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="System Architecture" src="images/system_architecture.jpg" /></a></p>
+<h2 id="2-hardware-and-software-requirements"><strong>2. Hardware and Software Requirements</strong></h2>
+<h3 id="hardware-components"><strong>Hardware Components</strong></h3>
+<p><strong>TurtleBot 4</strong><br />
+Equipped with LiDAR, IMU, and a camera, TurtleBot serves as the core mobile platform. It operates on a Raspberry Pi, running ROS2 to support real-time sensor-based navigation and control.</p>
+<p><strong>ESP32 Microcontroller with IMU</strong><br />
+Sends goal coordinates and orientation data wirelessly to the Raspberry Pi. The onboard IMU captures heading and motion, aiding remote coordination.</p>
+<p><strong>Compute System</strong><br />
+Raspberry Pi 4 on TurtleBot runs ROS2 and processes all sensor data for decision-making.</p>
+<p><strong>Communication</strong><br />
+Data is exchanged between ESP32 and Raspberry Pi via ROS2 topics.</p>
+<h3 id="interface-mockup"><strong>Interface Mockup</strong></h3>
+<p><a class="glightbox" href="../images/mockup.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="GUI Mockup" src="../images/mockup.png" /></a></p>
+<h3 id="software-components"><strong>Software Components</strong></h3>
+<ul>
+<li><strong>Operating System</strong>: Ubuntu 22.04  </li>
+<li><strong>Robotics Framework</strong>: ROS2 (Humble)  </li>
+<li><strong>Visualization Tools</strong>: RViz2, rqt, custom GUI (PyQt or similar)  </li>
+<li><strong>SLAM &amp; Navigation</strong>:  </li>
+<li>SLAM Toolbox for mapping  </li>
+<li>Nav2 Stack for path planning and obstacle avoidance  </li>
+<li><strong>Filtering</strong>:  </li>
+<li>Low-pass filter applied to ESP32 IMU data before fusion or visualization  </li>
+<li><strong>Custom ROS2 Nodes</strong>:  </li>
+<li>Node to receive and parse ESP32 coordinates  </li>
+<li>Sensor data publishers for LiDAR, camera, and IMU  </li>
+<li>Navigation and control node for goal-directed movement  </li>
+<li>GUI node for live data visualization  </li>
+</ul>
+<h2 id="3-sensor-integration-and-interaction"><strong>3. Sensor Integration and Interaction</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESP32 IMU</td>
+<td>Sends orientation and goal coordinates to Raspberry Pi</td>
+</tr>
+<tr>
+<td>TurtleBot Camera</td>
+<td>Assists in obstacle detection and path planning</td>
+</tr>
+<tr>
+<td>LiDAR</td>
+<td>Provides real-time mapping and obstacle detection</td>
+</tr>
+<tr>
+<td>TurtleBot IMU</td>
+<td>Supplies orientation and stability information for navigation</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>A low-pass filter is applied to the ESP32’s IMU data to eliminate high-frequency noise and improve heading stability!</em></p>
+</blockquote>
+<h2 id="4-control-flow-and-autonomy"><strong>4. Control Flow and Autonomy</strong></h2>
+<h3 id="esp32-raspberry-pi"><strong>ESP32 → Raspberry Pi</strong></h3>
+<p>The ESP32 periodically sends goal coordinates and IMU orientation data to the Raspberry Pi wirelessly.</p>
+<h3 id="sensor-processing-on-raspberry-pi"><strong>Sensor Processing on Raspberry Pi</strong></h3>
+<p>Camera, IMU, and LiDAR data are collected via ROS2 topics. The Raspberry Pi fuses these inputs for localization and mapping.</p>
+<h3 id="autonomous-control"><strong>Autonomous Control</strong></h3>
+<ul>
+<li>SLAM Toolbox constructs a real-time map of the environment.  </li>
+<li>Nav2 performs path planning and sends movement commands.  </li>
+<li>GUI provides real-time feedback of sensor inputs and robot status.  </li>
+</ul>
+<h2 id="5-preparation-needs"><strong>5. Preparation Needs</strong></h2>
+<ul>
+<li><strong>ROS2 Environment Setup</strong>  </li>
+<li>Installation of ROS2 Humble on Ubuntu  </li>
+<li>
+<p>Configuration of ROS2 workspaces for TurtleBot  </p>
+</li>
+<li>
+<p><strong>Hardware Testing</strong>  </p>
+</li>
+<li>Calibration of the external camera and LiDAR  </li>
+<li>
+<p>Testing TurtleBot navigation  </p>
+</li>
+<li>
+<p><strong>Software Development</strong>  </p>
+</li>
+<li>Writing ROS2 nodes for communication  </li>
+<li>
+<p>Implementing object detection using OpenCV  </p>
+</li>
+<li>
+<p><strong>Simulation Setup</strong>  </p>
+</li>
+<li>Running Rviz simulations before physical implementation  </li>
+</ul>
+<h2 id="6-final-demonstration-plan"><strong>6. Final Demonstration Plan</strong></h2>
+<h3 id="setup"><strong>Setup</strong></h3>
+<p>The TurtleBot starts in an indoor setting with predefined obstacles. ESP32 sends a target coordinate and heading to the Raspberry Pi.</p>
+<h3 id="execution"><strong>Execution</strong></h3>
+<p>The Raspberry Pi receives the goal, maps the space using SLAM, and generates a safe path using Nav2. The TurtleBot autonomously navigates to the goal while displaying real-time sensor data and localization in the GUI.</p>
+<h3 id="evaluation-metrics"><strong>Evaluation Metrics</strong></h3>
+<ul>
+<li>Goal-reaching accuracy  </li>
+<li>Map construction quality  </li>
+<li>Obstacle avoidance efficiency  </li>
+<li>GUI visualization and latency  </li>
+</ul>
+<h2 id="7-testing-and-evaluation-plan"><strong>7. Testing and Evaluation Plan</strong></h2>
+<h3 id="1-unit-testing"><strong>1. Unit Testing</strong></h3>
+<ul>
+<li>ESP32 IMU data transmission  </li>
+<li>Sensor topic publishing in ROS2  </li>
+<li>Nav2 local planner  </li>
+</ul>
+<h3 id="2-integration-testing"><strong>2. Integration Testing</strong></h3>
+<ul>
+<li>Full path planning using live sensor data  </li>
+<li>Real-time response to goal changes  </li>
+</ul>
+<h3 id="3-error-handling"><strong>3. Error Handling</strong></h3>
+<ul>
+<li>Dropout handling for ESP32 messages  </li>
+<li>Navigation recovery from collision or missed goals  </li>
+</ul>
+<h3 id="4-performance-metrics"><strong>4. Performance Metrics</strong></h3>
+<ul>
+<li>Distance error to target  </li>
+<li>Time taken for goal completion  </li>
+<li>Obstacle handling success rate  </li>
+</ul>
+<h2 id="8-project-impact"><strong>8. Project Impact</strong></h2>
+<p>This project demonstrates how low-cost autonomous robots can be enhanced through ROS2-based sensor fusion and decentralized coordination using microcontrollers. It provides a foundation for assistive or service robots in indoor navigation tasks, with potential applications in elderly assistance, warehouse automation, and academic robotics education.</p>
+<h2 id="9-advising-and-resource-needs"><strong>9. Advising and Resource Needs</strong></h2>
+<p><strong>Advisor:</strong> Prof. Daniel M Aukes  </p>
+<p>Prof. Daniel M Aukes, an esteemed faculty member with deep expertise in SLAM (Simultaneous Localization and Mapping) and multi-robot coordination, will serve as the primary advisor for this project. Prof. Aukes brings a wealth of experience in robotic systems design and implementation, which will be invaluable for guiding the technical development and integration aspects of our project. His prior work, focusing on the application of innovative robotics solutions in real-world scenarios, will provide critical insights into our design and execution phases.</p>
+<p>Prof. Aukes will also assist in troubleshooting complex system integration issues. Additionally, he will provide access to laboratory resources and equipment, facilitate networking with other robotics experts, and help in acquiring necessary project funding. His mentorship will be crucial in steering the project towards successful completion and ensuring that the team remains aligned with the latest advancements in robotics technology.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="Timeline/" class="md-footer__link md-footer__link--next" aria-label="Next: Project Timeline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Project Timeline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 team-name-here
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/2023_fall" target="_blank" rel="noopener" title="2023 Site" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h160v80c0 17.7 14.3 32 32 32h80v288c0 8.8-7.2 16-16 16zM64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3l-90.6-90.5C262.7 6.7 246.5 0 229.5 0zm97 289c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L79 303c-9.4 9.4-9.4 24.6 0 33.9l48 48c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-31-31 31-31zm96-34c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l31 31-31 31c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l48-48c9.4-9.4 9.4-24.6 0-33.9l-48-48z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.tabs.sticky", "toc.follow", "navigation.top", "navigation.path", "navigation.indexes", "navigation.prune", "content.action.edit", "navigation.footer"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
