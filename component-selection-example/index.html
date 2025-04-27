@@ -51,7 +51,72 @@
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <style>
+          body {
+            font-family: Roboto, Arial, sans-serif;
+            background-color: #fff;
+            color: #2e2e2e;
+            line-height: 1.6;
+            margin: 0px ;
+            padding: 0px;
+          }
+      
+          h1 {
+            font-size: 1.9rem;
+            margin-bottom: 0.8rem;
+          }
+      
+          .section-heading {
+            font-size: 1.4rem;
+            margin: 2.5rem 0 0.8rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 0px;
+          }
+      
+          .section-heading span {
+            font-size: 1.6rem;
+          }
+      
+          .component-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+          }
+      
+          .component-table thead {
+            background-color: #f9f9f9;
+            color: #333;
+          }
+      
+          .component-table th,
+          .component-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            vertical-align: top;
+          }
+      
+          .component-table tbody tr:nth-child(even) {
+            background-color: #fcfcfc;
+          }
+      
+          .component-table tbody tr:hover {
+            background-color: #f1fdf5;
+          }
+      
+          p {
+            font-size: 1rem;
+            color: #444;
+          } 
+        </style>
       
     
     
@@ -621,9 +686,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#Hardware-Components" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      Hardware Components
     </span>
   </a>
   
@@ -631,18 +696,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#style-1" class="md-nav__link">
+  <a href="#Software-Components" class="md-nav__link">
     <span class="md-ellipsis">
-      Style 1
+      Software Components
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#style-2" class="md-nav__link">
+  <a href="#Communication-Components" class="md-nav__link">
     <span class="md-ellipsis">
-      Style 2
+      Communication Components
     </span>
   </a>
   
@@ -677,108 +742,61 @@
   
 
 
-  <h1>Component Selection Example</h1>
-
-<h2 id="examples">Examples</h2>
-<h3 id="style-1">Style 1</h3>
-<blockquote>
-<p>This is the example found in the assignment, uses more html</p>
-</blockquote>
-<p><em>Table 1: Example component selection</em></p>
-<p><strong>External Clock Module</strong></p>
-<table>
-<thead>
-<tr>
-<th><strong>Solution</strong></th>
-<th><strong>Pros</strong></th>
-<th><strong>Cons</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a class="glightbox" href="image1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="image1.png" /></a><br>Option 1.<br> XC1259TR-ND surface mount crystal<br>$1/each<br><a href="http://www.digikey.com/product-detail/en/ECS-40.3-S-5PX-TR/XC1259TR-ND/827366">link to product</a></td>
-<td>* Inexpensive[^1]<br>* Compatible with PSoC<br>* Meets surface mount constraint of project</td>
-<td>* Requires external components and support circuitry for interface<br>* Needs special PCB layout.</td>
-</tr>
-<tr>
-<td><a class="glightbox" href="image3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="image3.png" /></a><br>* Option 2. <br>* CTX936TR-ND surface mount oscillator <br>* $1/each <br>* <a href="http://www.digikey.com/product-detail/en/636L3I001M84320/CTX936TR-ND/2292940">Link to product</a></td>
-<td>* Outputs a square wave <br>* Stable over operating temperature <br> * Direct interface with PSoC (no external circuitry required) range</td>
-<td>* More expensive <br>* Slow shipping speed</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Choice:</strong> Option 2: CTX936TR-ND surface mount oscillator</p>
-<p><strong>Rationale:</strong> A clock oscillator is easier to work with because it requires no external circuitry in order to interface with the PSoC. This is particularly important because we are not sure of the electrical characteristics of the PCB, which could affect the oscillation of a crystal. While the shipping speed is slow, according to the website if we order this week it will arrive within 3 weeks.</p>
-<h3 id="style-2">Style 2</h3>
-<blockquote>
-<p>Also acceptable, more markdown friendly</p>
-</blockquote>
-<p><strong>External Clock Module</strong></p>
-<ol>
-<li>
-<p>XC1259TR-ND surface mount crystal</p>
-<p><a class="glightbox" href="image1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="image1.png" /></a></p>
-<ul>
-<li>$1/each</li>
-<li><a href="http://www.digikey.com/product-detail/en/ECS-40.3-S-5PX-TR/XC1259TR-ND/827366">link to product</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Pros</th>
-<th>Cons</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Inexpensive</td>
-<td>Requires external components and support circuitry for interface</td>
-</tr>
-<tr>
-<td>Compatible with PSoC</td>
-<td>Needs special PCB layout.</td>
-</tr>
-<tr>
-<td>Meets surface mount constraint of project</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p>CTX936TR-ND surface mount oscillator</p>
-<p><a class="glightbox" href="image3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="image3.png" /></a></p>
-<ul>
-<li>$1/each</li>
-<li><a href="http://www.digikey.com/product-detail/en/636L3I001M84320/CTX936TR-ND/2292940">Link to product</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Pros</th>
-<th>Cons</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Outputs a square wave</td>
-<td>More expensive</td>
-</tr>
-<tr>
-<td>Stable over operating temperature</td>
-<td>Slow shipping speed</td>
-</tr>
-<tr>
-<td>Direct interface with PSoC (no external circuitry required) range</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</li>
-</ol>
-<p><strong>Choice:</strong> Option 2: CTX936TR-ND surface mount oscillator</p>
-<p><strong>Rationale:</strong> A clock oscillator is easier to work with because it requires no external circuitry in order to interface with the PSoC. This is particularly important because we are not sure of the electrical characteristics of the PCB, which could affect the oscillation of a crystal. While the shipping speed is slow, according to the website if we order this week it will arrive within 3 weeks.</p>
-
+    <h1>Component Overview</h1>
+    <p>This section outlines the key hardware, software, and communication modules used in our project <strong>"Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32"</strong>.</p>
+  
+    <div class="section-heading"><span>📦</span>Hardware Components</div>
+    <table class="component-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>TurtleBot 4</td><td>Mobile robot platform (LiDAR, IMU, Camera included)</td></tr>
+        <tr><td>Raspberry Pi 4 (on TurtleBot)</td><td>Main onboard computer, runs ROS2</td></tr>
+        <tr><td>ESP32 Microcontroller with IMU</td><td>Sends wireless goal coordinates and orientation data to the Raspberry Pi</td></tr>
+        <tr><td>LiDAR Sensor (on TurtleBot)</td><td>Real-time mapping and obstacle detection</td></tr>
+        <tr><td>Camera (on TurtleBot)</td><td>Obstacle detection, path planning</td></tr>
+        <tr><td>IMU (on TurtleBot)</td><td>Orientation and stability sensing</td></tr>
+      </tbody>
+    </table>
+  
+    <div class="section-heading"><span>💻</span>Software Components</div>
+    <table class="component-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Operating System: Ubuntu 22.04</td><td>OS running on Raspberry Pi</td></tr>
+        <tr><td>Robotics Framework: ROS2 (Humble)</td><td>Communication, navigation, and robot control</td></tr>
+        <tr><td>SLAM Toolbox</td><td>Real-time mapping of the environment</td></tr>
+        <tr><td>Nav2 Stack</td><td>Path planning and obstacle avoidance</td></tr>
+        <tr><td>RViz2</td><td>3D visualization of robot data</td></tr>
+        <tr><td>rqt</td><td>GUI plugins for ROS2 monitoring and visualization</td></tr>
+        <tr><td>Custom PyQt GUI</td><td>Displays real-time sensor data and robot status</td></tr>
+        <tr><td>Low-pass filter (software)</td><td>Filtering noise from ESP32 IMU data</td></tr>
+        <tr><td>Custom ROS2 Nodes</td><td>For communication, sensor parsing, navigation control</td></tr>
+      </tbody>
+    </table>
+  
+    <div class="section-heading"><span>📡</span>Communication Components</div>
+    <table class="component-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Wireless ROS2 Topic Transmission</td><td>ESP32 → Raspberry Pi communication of goal coordinates and IMU data</td></tr>
+        <tr><td>Local ROS2 Topics</td><td>Raspberry Pi internal communication between LiDAR, camera, IMU, and navigation stack</td></tr>
+      </tbody>
+    </table>
 
 
 
