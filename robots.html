@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robots – RAS 598 Team05</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(ellipse at center, #1a0033 0%, #0e031f 100%);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f92672;
+    }
+
+    main {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, #f92672, #9c27b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      margin-top: 3rem;
+      color: #f92672;
+      border-left: 4px solid #f92672;
+      padding-left: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      background-color: rgba(249, 38, 114, 0.1);
+      color: #f92672;
+    }
+
+    td {
+      color: #ccc;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">RAS 598: Team05</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="robots.html">Robots</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main data-aos="fade-up">
+    <h1>Component Overview</h1>
+    <p style="text-align:center; color:#ccc; max-width: 800px; margin: 0 auto 3rem;">
+      This section outlines the key hardware, software, and communication modules used in our project
+      <em>"Coordinated Autonomy: Goal-Oriented Navigation with TurtleBot and ESP32"</em>.
+    </p>
+
+    <div class="section">
+      <h2>📦 Hardware Components</h2>
+      <table>
+        <tr><th>Component</th><th>Purpose</th></tr>
+        <tr><td>TurtleBot 4</td><td>Mobile robot platform (LiDAR, IMU, Camera included)</td></tr>
+        <tr><td>Raspberry Pi 4 (on TurtleBot)</td><td>Main onboard computer, runs ROS2</td></tr>
+        <tr><td>ESP32 Microcontroller with IMU</td><td>Sends wireless goal coordinates and orientation data to the Raspberry Pi</td></tr>
+        <tr><td>LiDAR Sensor (on TurtleBot)</td><td>Real-time mapping and obstacle detection</td></tr>
+        <tr><td>Camera (on TurtleBot)</td><td>Obstacle detection, path planning</td></tr>
+        <tr><td>IMU (on TurtleBot)</td><td>Orientation and stability sensing</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>💻 Software Components</h2>
+      <table>
+        <tr><th>Component</th><th>Purpose</th></tr>
+        <tr><td>Operating System: Ubuntu 22.04</td><td>OS running on Raspberry Pi</td></tr>
+        <tr><td>Robotics Framework: ROS2 (Humble)</td><td>Communication, navigation, and robot control</td></tr>
+        <tr><td>SLAM Toolbox</td><td>Real-time mapping of the environment</td></tr>
+        <tr><td>Nav2 Stack</td><td>Path planning and obstacle avoidance</td></tr>
+        <tr><td>RViz2</td><td>3D visualization of robot data</td></tr>
+        <tr><td>rqt</td><td>GUI plugins for ROS2 monitoring and visualization</td></tr>
+        <tr><td>Custom PyQt GUI</td><td>Displays real-time sensor data and robot status</td></tr>
+        <tr><td>Low-pass filter (software)</td><td>Filtering noise from ESP32 IMU data</td></tr>
+        <tr><td>Custom ROS2 Nodes</td><td>For communication, sensor parsing, navigation control</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>📡 Communication Components</h2>
+      <table>
+        <tr><th>Component</th><th>Purpose</th></tr>
+        <tr><td>Wireless ROS2 Topic Transmission</td><td>ESP32 → Raspberry Pi communication of goal coordinates and IMU data</td></tr>
+        <tr><td>Local ROS2 Topics</td><td>Raspberry Pi internal communication between LiDAR, camera, IMU, and navigation stack</td></tr>
+      </table>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200 });
+  </script>
+</body>
+
+</html>

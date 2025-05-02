@@ -1,0 +1,102 @@
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to right, #0e031f, #230c33);
+    color: #ffffff;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-text {
+    flex: 1;
+    max-width: 600px;
+  }
+  
+  .hero-text h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-text p {
+    margin-bottom: 2rem;
+    color: #bbb;
+  }
+  
+  .btn {
+    background: transparent;
+    border: 2px solid #f92672;
+    color: #f92672;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .btn:hover {
+    background: #f92672;
+    color: white;
+  }
+  
+  .hero-image {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero-image img {
+    max-width: 90%;
+    height: auto;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .triangle {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #f92672, #ff79c6);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    opacity: 0.2;
+    animation: rotateTriangle 10s linear infinite;
+    z-index: 0;
+    transform-origin: center;
+  }
+  
+  @keyframes rotateTriangle {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  .nav-buttons {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex
+  

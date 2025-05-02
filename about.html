@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – RAS 598 Team05</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #0e031f, #230c33);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #f92672;
+    }
+
+    main {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    p.description {
+      text-align: center;
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    .team {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .member {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 280px;
+      transition: transform 0.3s ease;
+    }
+
+    .member:hover {
+      transform: translateY(-5px);
+    }
+
+    .member h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .member p {
+      font-size: 0.95rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">RAS 598: Team05</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="robots.html">Robots</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main data-aos="fade-up">
+    <h1>Meet Our Team</h1>
+    <p class="description">
+      We are a dedicated team of engineers collaborating on autonomous robotics using ROS2 and ESP32 platforms.
+      Our focus is on building intelligent, low-cost navigation systems through real-time sensing, control, and integration.
+    </p>
+
+    <div class="team">
+      <div class="member" data-aos="zoom-in" data-aos-delay="100">
+        <h2>Varun Karthik</h2>
+        <p>Specializes in software integration and ROS2 architecture.</p>
+      </div>
+      <div class="member" data-aos="zoom-in" data-aos-delay="200">
+        <h2>Asrith Pandreka</h2>
+        <p>Focuses on microcontroller programming and real-time control.</p>
+      </div>
+      <div class="member" data-aos="zoom-in" data-aos-delay="300">
+        <h2>Anjali Notani</h2>
+        <p>Works on perception, data visualization, and system debugging.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200 });
+  </script>
+</body>
+
+</html>
