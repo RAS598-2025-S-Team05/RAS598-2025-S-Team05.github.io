@@ -46,10 +46,11 @@
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #f92672; /* Red color */
+      }
 
     p.description {
       text-align: center;
@@ -58,34 +59,96 @@
       margin: 0 auto 3rem;
     }
 
+    /* TEAM SECTION */
     .team {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 2rem;
+      margin-top: 3rem;
     }
 
     .member {
       background: rgba(255, 255, 255, 0.05);
       padding: 1.5rem;
-      border-radius: 12px;
+      border-radius: 20px;
       text-align: center;
       max-width: 280px;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .member:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 25px rgba(249, 38, 114, 0.3);
     }
 
     .member h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #f92672;
+      }
 
     .member p {
       font-size: 0.95rem;
       color: #aaa;
+    }
+
+    /* ABOUT US SECTION */
+    .enhanced-about {
+      margin-top: 4rem;
+      padding: 2rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: 0.3s ease-in-out;
+    }
+
+    .enhanced-about:hover {
+      box-shadow: 0 0 25px rgba(249, 38, 114, 0.3);
+    }
+
+    .enhanced-about h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 600px) {
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .info-item {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #eee;
+      font-weight: 500;
+      transition: transform 0.2s;
+    }
+
+    .info-item:hover {
+      transform: scale(1.03);
+    }
+
+    .info-item span {
+      color: #f92672;
+      font-weight: 700;
+      margin-right: 0.5rem;
     }
   </style>
 </head>
@@ -97,6 +160,7 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="robots.html">Robots</a>
+      <a href="code.html">Code</a>
       <a href="#">Contact</a>
     </nav>
   </header>
@@ -120,6 +184,17 @@
       <div class="member" data-aos="zoom-in" data-aos-delay="300">
         <h2>Anjali Notani</h2>
         <p>Works on perception, data visualization, and system debugging.</p>
+      </div>
+    </div>
+
+    <div class="about-info enhanced-about" data-aos="fade-up" data-aos-delay="400">
+      <h2>About Us</h2>
+      <div class="info-grid">
+        <div class="info-item"><span>📌 Team Number:</span> 05</div>
+        <div class="info-item"><span>📅 Semester & Year:</span> Spring 2025</div>
+        <div class="info-item"><span>🏫 University:</span> Arizona State University</div>
+        <div class="info-item"><span>🤖 Class:</span> RAS598 Experimentation and Deployment of Robotics</div>
+        <div class="info-item"><span>👨‍🏫 Advising Faculty:</span> Dr. Daniel Aukes</div>
       </div>
     </div>
   </main>

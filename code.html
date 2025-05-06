@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Walkthrough – RAS 598</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
+
+  <style>
+    /* Inline & block code styling */
+    code {
+      background: rgba(49, 48, 56, 0.9);
+      color: #f92672;
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95em;
+    }
+    pre code {
+      display: block;
+      background: rgba(49, 48, 56, 0.9);
+      color: #f92672;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      line-height: 1.4;
+      font-family: 'Fira Code', monospace;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #0e031f;
+      color: white;
+      overflow: hidden;
+    }
+    .main-content {
+      padding-bottom: 150px;
+      background: linear-gradient(to right, #0e031f, #230c33);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      position: sticky;
+      top: 0;
+      background: #0e031f;
+      z-index: 100;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #f92672;
+    }
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #f92672; }
+
+    .page-title {
+      text-align: center;
+      margin: 3rem 0 1rem;
+    }
+    .page-title h1 {
+      color: #f92672;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .architecture {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .architecture h2 {
+      font-size: 2.25rem;
+      color: #f92672;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .architecture h2:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(90deg,transparent,#f92672,transparent);
+      bottom: -6px;
+      left: 25%;
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    .architecture.animate h2:after {
+      transform: scaleX(1);
+    }
+    .architecture .section-text,
+    .architecture .section-list {
+      color: #ccc;
+      line-height: 1.6;
+    }
+    .section-list { list-style: none; padding-left: 0; }
+    .section-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-list li:before {
+      content: '•';
+      color: #f92672;
+      position: absolute;
+      left: 0;
+      font-size: 1.2em;
+    }
+
+    .intro {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    .intro button {
+      background: #f92672;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      background: #1a1a2e;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">RAS 598: Code Walkthrough</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="robots.html">Robots</a>
+      <a href="code.html">Code</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="main-content" data-scroll-container>
+    <!-- Page Title -->
+    <section class="page-title fade-in">
+      <h1>Code Walkthrough</h1>
+    </section>
+
+    <!-- Introduction -->
+    <section class="intro fade-in">
+      <p>This page introduces the key launch files and custom nodes that power TurtleBot 4’s autonomous mapping and navigation, illustrating how SLAM, localization, path planning, collision prevention, and map saving integrate seamlessly.</p>
+      <p>Explore the full source code on GitHub:</p>
+      <button onclick="window.location.href='https://github.com/RAS598-2025-S-Team05/RAS598-2025-S-Team05.github.io';">View Code on GitHub</button>
+    </section>
+
+    <!-- auto_map.launch.py -->
+    <section class="architecture fade-in">
+      <h2>🔧 auto_map.launch.py</h2>
+      <div class="section-text">
+        <p>This launch file enables autonomous mapping of an indoor environment. It integrates:</p>
+        <ul class="section-list">
+          <li>SLAM Toolbox: A 2D SLAM solution for mapping.</li>
+          <li>RViz: Visualization of perception & map.</li>
+          <li><code>obstacle_avoid.py</code>: Safety node to prevent collisions.</li>
+          <li><code>auto_save.py</code>: Interactive map-saving utility.</li>
+          <li>Keyboard Teleop: Manual driving via keyboard.</li>
+        </ul>
+        <p>After exploration, pressing <code>q</code> or <code>s</code> triggers map saving via <code>map_saver_cli</code>.</p>
+
+        <p><strong>Launch Snippet Explained:</strong></p>
+        <pre><code>
+Node(
+    package='turtlebot4_navigation',
+    executable='navigation_launch.py',
+    output='screen'
+),
+Node(
+    package='my_project',
+    executable='obstacle_avoid.py',
+    name='obstacle_avoid_node',
+    output='screen'
+),
+Node(
+    package='my_project',
+    executable='auto_save.py',
+    name='auto_save_node',
+    output='screen'
+)
+        </code></pre>
+        <ul class="section-list">
+          <li>Navigation stack + SLAM.</li>
+          <li>Custom obstacle avoidance.</li>
+          <li>Keypress-triggered map save.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- navigation_with_local.launch.py -->
+    <section class="architecture fade-in">
+      <h2>🔧 navigation_with_local.launch.py</h2>
+      <div class="section-text">
+        <p>Runs after mapping is complete. Includes:</p>
+        <ul class="section-list">
+          <li>AMCL: Localization in saved map.</li>
+          <li>Nav2: Path planning & control.</li>
+          <li>RViz: Live navigation status.</li>
+          <li><code>esp32_goal.py</code>: Connects to ESP32 goals.</li>
+        </ul>
+
+        <p><strong>Launch Snippet Explained:</strong></p>
+        <pre><code>
+Node(
+    package='my_project',
+    executable='esp32_goal.py',
+    name='esp32_goal_node',
+    output='screen'
+)
+        </code></pre>
+        <ul class="section-list">
+          <li>Subscribes to <code>/esp32_07/goal</code> & sends to Nav2.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- esp32_goal.py -->
+    <section class="architecture fade-in">
+      <h2>🔧 esp32_goal.py</h2>
+      <div class="section-text">
+        <p>Receives 3D goals and uses NavigateToPose action client:</p>
+
+        <p><strong>Initialization:</strong></p>
+        <pre><code>
+self.goal_subscriber = this.create_subscription(
+    Point,
+    '/esp32_07/goal',
+    this.goal_callback,
+    10
+)
+this.marker_pub = this.create_publisher(Marker, '/goal_marker', 10)
+this.action_client = ActionClient(this, NavigateToPose, '/rpi_07/navigate_to_pose')
+        </code></pre>
+
+        <p><strong>Goal Callback:</strong></p>
+        <pre><code>
+def goal_callback(this, msg):
+    this.get_logger().info(f"Received ESP32 goal: {msg.x}, {msg.y}, {msg.z}")
+    goal_msg = NavigateToPose.Goal()
+    goal_msg.pose.header.frame_id = "map"
+    goal_msg.pose.header.stamp = this.get_clock().now().to_msg()
+    goal_msg.pose.pose.position.x = msg.x
+    goal_msg.pose.pose.position.y = msg.y
+    goal_msg.pose.pose.orientation.w = 1.0
+    this.publish_marker(msg.x, msg.y)
+    while not this.action_client.wait_for_server(timeout_sec=1.0):
+        this.get_logger().info('Waiting for NavigateToPose action server...')
+    send_goal_future = this.action_client.send_goal_async(goal_msg)
+    send_goal_future.add_done_callback(this.goal_response_callback)
+        </code></pre>
+
+        <p><strong>Publish Marker:</strong></p>
+        <pre><code>
+def publish_marker(this, x, y):
+    marker = Marker()
+    marker.header.frame_id = "map"
+    marker.header.stamp = this.get_clock().now().to_msg()
+    marker.type = Marker.SPHERE
+    marker.action = Marker.ADD
+    marker.pose.position.x = x
+    marker.pose.position.y = y
+    marker.pose.position.z = 0.1
+    marker.scale.x = 0.2
+    marker.scale.y = 0.2
+    marker.scale.z = 0.2
+    marker.color.r = 1.0
+    marker.color.g = 0.0
+    marker.color.b = 0.0
+    marker.color.a = 1.0
+    this.marker_pub.publish(marker)
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- obstacle_avoid.py -->
+    <section class="architecture fade-in">
+      <h2>🔧 obstacle_avoid.py</h2>
+      <div class="section-text">
+        <p>Monitors LiDAR and publishes cmd_vel to avoid collisions:</p>
+
+        <pre><code>
+def scan_callback(this, msg):
+    front_ranges = []
+    angle_min = msg.angle_min
+    angle_increment = msg.angle_increment
+    for i, distance in enumerate(msg.ranges):
+        angle = angle_min + i * angle_increment
+        if -0.5 < angle < 0.5:
+            front_ranges.append(distance)
+    min_distance = min(front_ranges) if front_ranges else float('inf')
+    cmd = Twist()
+    if min_distance < 0.4:
+        cmd.linear.x = 0.0
+        cmd.angular.z = 0.5
+    else:
+        cmd.linear.x = 0.15
+        cmd.angular.z = 0.0
+    this.cmd_vel_pub.publish(cmd)
+        </code></pre>
+
+        <p><strong>Init:</strong></p>
+        <pre><code>
+this.cmd_vel_pub = this.create_publisher(Twist, '/rpi_07/cmd_vel', 10)
+this.scan_sub = this.create_subscription(
+    LaserScan,
+    '/rpi_07/scan',
+    this.scan_callback,
+    10
+)
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- esp32_goal_publisher.py -->
+    <section class="architecture fade-in">
+      <h2>🔧 esp32_goal_publisher.py</h2>
+      <div class="section-text">
+        <p>Reads serial from ESP32 and publishes as Point:</p>
+
+        <pre><code>
+this.ser = serial.Serial('/dev/ttyUSB0', 115200, timeout=1)
+ time.sleep(2)
+ this.publisher_ = this.create_publisher(Point, '/esp32_07/goal', 10)
+        </code></pre>
+        <pre><code>
+line = this.ser.readline().decode('utf-8').strip()
+match = re.search(r'X:\s*(-?\d+\.?\d*)\s*Y:\s*(-?\d+\.?\d*)\s*Z:\s*(-?\d+\.?\d*)', line)
+if match:
+    x, y, z = map(float, match.groups())
+    point = Point()
+    point.x = x
+    point.y = y
+    point.z = 0.0
+    this.publisher_.publish(point)
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- auto_save.py -->
+    <section class="architecture fade-in">
+      <h2>🔧 auto_save.py</h2>
+      <div class="section-text">
+        <p>Listens for <code>q</code> or <code>s</code> to save the map:</p>
+        <pre><code>
+if key in ['q', 's']:
+    save_cmd = f"ros2 run nav2_map_server map_saver_cli -f map_{timestamp}"
+    os.system(save_cmd)
+        </code></pre>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 RAS 598 Team05</p>
+    </footer>
+  </div>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script>
+    const container = document.querySelector('[data-scroll-container]');
+    const scroll = new LocomotiveScroll({ el: container, smooth: true });
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.scrollerProxy(container, {
+      scrollTop(v) { return arguments.length ? scroll.scrollTo(v) : scroll.scroll.instance.scroll.y; },
+      getBoundingClientRect() { return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }; },
+      pinType: container.style.transform ? 'transform' : 'fixed'
+    });
+    scroll.on('scroll', ScrollTrigger.update);
+    ScrollTrigger.addEventListener('refresh', () => scroll.update());
+    document.querySelectorAll('.architecture').forEach(sec => {
+      ScrollTrigger.create({
+        trigger: sec, scroller: container, start: 'top 85%',
+        onEnter: () => { sec.classList.add('animate'); }
+      });
+    });
+  </script>
+</body>
+</html>

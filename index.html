@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TurtleBot Project – RAS 598</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
+
+  <!-- Mermaid CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark'
+    });
+  </script>
+
   <style>
+
+    /* ========== NEW INLINE & BLOCK CODE STYLING ========== */
+    code {
+      background: rgba(49, 48, 56, 0.9);
+      color: #f92672;
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95em;
+    }
+    pre code {
+      display: block;
+      background: rgba(49, 48, 56, 0.9);
+      color: #f92672;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      line-height: 1.4;
+      font-family: 'Fira Code', monospace;
+    }
+    /* ======================================================= */
+
     html, body {
       height: 100%;
       margin: 0;
@@ -16,8 +47,12 @@
       background: #0e031f;
       color: white;
       overflow-x: hidden;
+      scroll-behavior: smooth;
+      transition: background-color 1s ease;
     }
-
+    [data-scroll-container] {
+      overflow: hidden;
+    }
     .splash-screen {
       height: 100vh;
       width: 100%;
@@ -25,13 +60,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1001;
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 1001;
       transition: opacity 1s ease;
     }
-
     .splash-screen img {
       width: 400px;
       max-width: 90%;
@@ -39,46 +73,30 @@
       transition: all 1.5s ease-in-out;
       transform-origin: center;
     }
-
     .splash-screen.animate img {
       transform: scale(1.4) translate(40vw, -50px);
       opacity: 0;
     }
-
     .splash-screen.hidden {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
-
-    body.loaded .main-content {
-      display: block;
-    }
-
     .main-content {
-      display: none;
+      display: block;
       padding-bottom: 150px;
       background: linear-gradient(to right, #0e031f, #230c33);
-      animation: fadeIn 1s ease-in;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 2rem;
     }
-
     .logo {
       font-weight: bold;
       font-size: 1.5rem;
     }
-
     nav a {
       margin-left: 2rem;
       text-decoration: none;
@@ -86,36 +104,32 @@
       font-weight: 500;
       transition: color 0.3s;
     }
-
     nav a:hover {
       color: #f92672;
     }
-
     .hero {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4rem 2rem;
+      padding: 8rem 2rem;
       flex-wrap: wrap;
+      position: relative;
     }
-
     .hero-text {
       flex: 1;
       max-width: 600px;
       z-index: 2;
     }
-
     .hero-text h1 {
       font-size: 3rem;
       line-height: 1.2;
       margin-bottom: 1rem;
     }
-
     .hero-text p {
       margin-bottom: 2rem;
       color: #bbb;
+      text-align: justify;
     }
-
     .btn {
       display: inline-block;
       background: transparent;
@@ -125,15 +139,35 @@
       border-radius: 25px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
     }
-
+    .btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(249,38,114,0.2);
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
     .btn:hover {
       background: #f92672;
       color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(249,38,114,0.4);
     }
-
+    .btn:hover:before {
+      left: 0;
+    }
+    .btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 10px rgba(249,38,114,0.4);
+    }
     .hero-image {
       flex: 1;
       text-align: center;
@@ -142,30 +176,67 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 1.2s cubic-bezier(0.68,-0.55,0.27,1.55);
     }
-
+    .hero-image.repositioned {
+      position: absolute;
+      right: 4rem;
+      top: 0;
+      transform: translateY(-50%) scale(1);
+      opacity: 1;
+      z-index: 2;
+    }
     .hero-image img {
       max-width: 90%;
       height: auto;
       position: relative;
-      z-index: 2;
+      z-index: 3;
+      transition: transform 0.8s ease;
+      animation: float 4s ease-in-out infinite;
     }
-
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(3deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    @keyframes moveBot {
+      0% { transform: translate(0,0) rotate(0deg); }
+      25% { transform: translate(30vw,-10vh) rotate(10deg); }
+      50% { transform: translate(20vw,10vh) rotate(-5deg); }
+      75% { transform: translate(40vw,0) rotate(5deg); }
+      100% { transform: translate(0,0) rotate(0deg); }
+    }
+    .turtlebot-animated {
+      position: fixed;
+      width: 180px;
+      z-index: 1000;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+      animation: moveBot 3s forwards cubic-bezier(0.68,-0.55,0.27,1.55);
+    }
     .rotating-square {
       position: absolute;
       width: 600px;
       height: 600px;
-      background: linear-gradient(135deg, #f92672, #ff79c6);
+      background: linear-gradient(135deg,#f92672,#ff79c6);
       opacity: 0.2;
-      animation: rotateSquare 12s linear infinite;
-      z-index: 1;
       filter: blur(1px);
+      animation: rotateSquare 12s linear infinite;
+      z-index: 0;
       transform-origin: center;
+      transition: all 1s ease;
     }
-
+    .rotating-square.repositioned {
+      width: 600px;
+      height: 600px;
+      right: 200px;
+      opacity: 0.15;
+    }
     @keyframes rotateSquare {
       from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      to   { transform: rotate(360deg); }
     }
 
     .architecture {
@@ -175,23 +246,371 @@
       text-align: center;
       margin-bottom: 5rem;
     }
-
     .architecture h2 {
       font-size: 2.5rem;
       margin-bottom: 2rem;
       color: #f92672;
+      position: relative;
+      display: inline-block;
     }
-
+    .architecture h2:after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg,transparent,#f92672,transparent);
+      bottom: -10px;
+      left: 20%;
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    .architecture.animate h2:after {
+      transform: scaleX(1);
+    }
+    .architecture p {
+      max-width: 900px;
+      margin: 0 auto;
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.7;
+      text-align: justify;
+    }
     .architecture img {
       width: 100%;
       max-width: 800px;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(249, 38, 114, 0.2);
+      box-shadow: 0 0 20px rgba(249,38,114,0.2);
+      transition: all 0.5s ease;
+    }
+    .architecture img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(249,38,114,0.4);
+    }
+
+    .sensor-table {
+      overflow-x: auto;
+      margin: 0 auto;
+      max-width: 900px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      padding: 1rem;
+      box-shadow: 0 0 15px rgba(249,38,114,0.15);
+      transition: all 0.5s ease;
+    }
+    .sensor-table:hover {
+      box-shadow: 0 0 25px rgba(249,38,114,0.3);
+      transform: translateY(-5px);
+    }
+    .sensor-table table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #eee;
+    }
+    .sensor-table th,
+    .sensor-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    .sensor-table thead {
+      background-color: rgba(249,38,114,0.2);
+      color: #f92672;
+    }
+    .sensor-table tbody tr:nth-child(odd) {
+      background-color: rgba(255,255,255,0.02);
+    }
+    .sensor-table tbody tr:hover {
+      background-color: rgba(249,38,114,0.08);
+      transition: background-color 0.3s;
+    }
+
+    .section-text {
+      max-width: 900px;
+      margin: 2rem auto;
+      text-align: justify;
+      color: #ccc;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .section-list {
+      list-style: none;
+      padding-left: 0;
+      text-align: left;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      line-height: 2;
+      margin-bottom: 0.5rem;
+    }
+    .section-list li:before {  
+      content: '•';  
+      color: #f92672;  
+      position: absolute;  
+      left: 0;  
+      font-size: 1.2em;  
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+
+    .goals-intro {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      font-style: italic;
+      color: #ddd;
+    }
+    .goals-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .goal-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 1.5rem;
+      flex: 1 1 280px;
+      max-width: 320px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .goal-card h3 {
+      margin-top: 0;
+      color: #f72585;
+    }
+    .goal-card ul {
+      list-style: disc inside;
+      margin: 1rem 0 0;
+      padding: 0;
+      color: #eee;
+    }
+
+    /* Mermaid styling */
+    .mermaid svg {
+      background: none !important;
+    }
+    .mermaid .node rect {
+      fill: rgba(0,0,0,0.6) !important;
+      stroke: #f92672 !important;
+      stroke-width: 2px !important;
+    }
+    .mermaid text {
+      fill: #eee !important;
+      font-weight: 500;
+    }
+    .mermaid .edgePath path {
+      stroke: #888 !important;
+      stroke-width: 1.2px !important;
+    }
+
+    /* Gantt CSS-grid */
+    .workflow-intro {
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    .gantt-container {
+      width: 100%;
+      margin: 0 auto;
+      /* remove the overflow-x */
+    }
+    
+    .gantt {
+      display: grid;
+      /* first column (tasks) gets 150px, then 10 equally-sized columns */
+      grid-template-columns: 150px repeat(10, 1fr);
+      grid-auto-rows: 50px;               /* you can tweak row height here */
+      width: 100%;                        /* force full width */
+      border: 1px solid #333;
+      border-radius: 8px;
+    }
+    
+    .gantt > .header {
+      padding: 0.75rem;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      background: #2f2c3b;
+      color: #eee;
+    }
+    .gantt > div:nth-child(11n) {
+      border-right: none;
+    }
+    .gantt > div:nth-last-child(-n+11) {
+      border-bottom: none;
+    }
+    
+    .week-label {
+      grid-column: 1;
+      padding-left: 0.75rem;
+      color: #eee;
+      display: flex;
+      align-items: center;
+    }
+    .bar {
+      border-radius: 4px;
+      background-color: #f92672;
+      border: 2px solid #0e031f;
+      /* no inner text, so center a little padding */
+      padding: 0.5rem;
+    }
+    /* ----- Architecture Flowchart Card ----- */
+    .arch-card {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+    .arch-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    /* ----- Two-column Topics & RQt Grid ----- */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
+    @media (max-width: 900px) {
+      .arch-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Topics card styling */
+    .topics-card {
+      background: rgba(255,255,255,0.03);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .topics-card h3 {
+      margin-bottom: 1rem;
+      color: #f92672;
+    }
+    .topics-card table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .topics-card th, .topics-card td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid #333;
+      color: #ddd;
+    }
+    .topics-card thead th {
+      background: rgba(249,38,114,0.2);
+      color: #f92672;
+    }
+    .topics-card tbody tr:nth-child(odd) {
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* RQt card styling */
+    .rqt-card {
+      background: rgba(255,255,255,0.03);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    .rqt-card h3 {
+      margin-bottom: 1rem;
+      color: #f92672;
+    }
+    .rqt-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .rqt-images figure {
+      flex: 1 1 45%;
+      text-align: center;
+      color: #ccc;
+    }
+    .rqt-images img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      cursor: pointer;
+    }
+    .rqt-images figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .green {
+      background-color: #00c853;
+    }
+    .orange {
+      background-color: #ffa000;
+    }
+    .grey {
+      background-color: #757575;
+    }
+    .red {
+      background-color: #f92672;
+      border: 2px solid #0e031f;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+      .hero-text, .hero-image {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+      .architecture h2 {
+        font-size: 2rem;
+      }
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      footer .section {
+        margin: 1rem 0;
+      }
+      .hero-image.repositioned {
+        position: relative;
+        right: 0;
+        transform: scale(0.8);
+        margin: -50px 0;
+      }
+      .rotating-square.repositioned {
+        right: auto;
+        opacity: 0.1;
+      }
     }
 
     footer {
-      position: fixed;
-      left: 0;
+      position: sticky;
       bottom: 0;
       width: 100%;
       background: #1a1a2e;
@@ -200,62 +619,533 @@
       justify-content: space-between;
       flex-wrap: wrap;
       font-size: 0.9rem;
-      z-index: 1000;
+      z-index: 999;
       box-sizing: border-box;
     }
-
     footer .section {
       margin: 0.5rem 0;
     }
-
     footer a {
       color: #f92672;
       margin-right: 1rem;
       text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    footer a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #f92672;
+      transition: all 0.3s ease;
+    }
+    footer a:hover:after {
+      width: 100%;
+    }
+    footer a:hover {
+      color: #ff79c6;
     }
   </style>
 </head>
-
 <body>
   <div class="splash-screen" onclick="enterSite()">
-    <img src="images/turtlebot4.png" alt="Click to enter" id="splash-img" />
+    <img src="images/turtlebot4.png" alt="Click to enter" />
   </div>
 
-  <div class="main-content">
-    <header data-aos="fade-down" data-aos-duration="1200">
+  <div class="main-content" data-scroll-container>
+
+    <header>
       <div class="logo">RAS 598: Team05</div>
       <nav>
         <a href="about.html">About</a>
         <a href="robots.html">Robots</a>
+        <a href="code.html">Code</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <section class="hero">
-      <div class="hero-text" data-aos="fade-right">
-        <h1>Coordinated Autonomy:<br>Goal-Oriented Navigation with TurtleBot and ESP32</h1>
-        <p>Autonomous navigation made smart, fast, and affordable — our ROS2-powered system fuses multi-sensor data, real-time control, and live insights to drive intelligent decisions on low-cost hardware.</p>
-        <a href="live_dashboard.html" class="btn">▶ View Demo</a>
+      <div class="hero-text">
+        <h1 class="fade-in">Coordinated Autonomy:<br>Goal-Oriented Navigation with TurtleBot and ESP32</h1>
+        <p class="fade-in">Autonomous navigation made smart, fast, and affordable — our ROS2-powered system fuses multi-sensor data, real-time control, and live insights to drive intelligent decisions on low-cost hardware.</p>
+        <a href="live_dashboard.html" class="btn pulse-animation fade-in">▶ View Gallery</a>
       </div>
-
-      <div class="hero-image" data-aos="fade-left">
+      <div class="hero-image fade-in">
         <div class="rotating-square"></div>
         <img src="images/turtlebot4.png" alt="TurtleBot Robot Model" />
       </div>
     </section>
 
-    <section class="architecture" data-aos="fade-up">
-      <h2>Project Architecture Diagram</h2>
-      <img src="images/flowchart_transparent.png" alt="Project Architecture Flowchart">
+    <!-- Project Description -->
+<section class="architecture fade-in">
+  <h2>Project Description</h2>
+  <div class="section-text">
+    <h3>Scope</h3>
+    <p>
+      The system implements a goal-oriented autonomous navigation framework where an ESP32 equipped with an IMU publishes a target location to a ROS 2 topic. The TurtleBot4, after autonomously mapping its environment, listens to this goal and performs real-time path planning and navigation while avoiding obstacles. The architecture emphasizes modularity, real-time processing, and seamless hardware-to-ROS integration.
+    </p>
+
+    <h3>Data Collection</h3>
+    <ul class="section-list">
+      <li><strong>Current Position:</strong> Estimated through <code>/rpi_07/amcl_pose</code>, based on adaptive Monte Carlo localization</li>
+      <li><strong>Goal Position:</strong> Received via <code>/esp32_07/goal</code> as a <code>geometry_msgs/Point</code></li>
+      <li><strong>Path and Map:</strong> SLAM-based mapping through <code>auto_map.launch.py</code>, with the map saved via <code>auto_save.py</code></li>
+      <li><strong>Wheel Velocity:</strong> Entirely computed on a dedicated VM—the RPi simply forwards topic data over Ethernet—minimizing onboard load and reducing latency</li>
+    </ul>
+
+    <h3>Initial Data Collection</h3>
+    <p>
+      At the start, the intent was to directly use raw IMU readings for velocity control—manipulating wheel speeds via <code>/cmd_vel</code> based on tilt. This approach proved inconsistent and lacked precision. Recognizing this, the data strategy was shifted to interpreting the IMU's global position estimate as a goal, which the robot could reach using the more robust Nav2 planner.
+    </p>
+    <ul class="section-list">
+      <li><strong>Learning:</strong> IMU as a goal provider rather than motion controller was a turning point in shaping a stable, achievable project scope.</li>
+      <li><strong>Cmd_Vel Integration:</strong> The <code>obstacle_avoid.py</code> node continuously processes LiDAR data from <code>/rpi_07/scan</code> to detect obstacles and dynamically publishes velocity commands to <code>/rpi_07/cmd_vel</code>. By adjusting both linear and angular speeds in real time, it ensures smooth forward motion while safely steering around any detected obstructions.</li>
+      <li><strong>Python Code Flow:</strong> <code>esp32_goal.py</code> receives the ESP32 goal and sends it to the NavigateToPose action server, ensuring smooth execution within Nav2.</li>
+    </ul>
+
+    <h3>Filtering</h3>
+    <p>
+      Although no ML training was conducted, filtering was essential. The ESP32 data likely underwent low-pass filtering (or smoothing) on-device to avoid goal jitter. On the TurtleBot side, stability was maintained by ignoring rapid goal updates and sending the navigation goal only once per session.
+    </p>
+    <p>
+      This passive filtering ensured reliability and reduced misbehavior in dynamic environments.
+    </p>
+
+    <h3>How ROS Was Used</h3>
+    <ul class="section-list">
+      <p> ROS 2 formed the communication and control backbone of our system: sensor data (IMU goals, LiDAR scans, odometry) was published and subscribed on topics like <code>/esp32_07/goal</code>, <code>/rpi_07/scan</code>, and <code>/rpi_07/amcl_pose</code>, while motion commands flowed on <code>/rpi_07/cmd_vel</code>. We leveraged the NavigateToPose action server for asynchronous goal execution and feedback, and organized our nodes into modular launch files (mapping, localization, navigation, obstacle avoidance, map saving). This architecture provided real-time responsiveness, clear separation of concerns, and easy extensibility across all autonomy components.
+      </p>
+      <li><strong>Pub/Sub:</strong>
+        <ul class="section-list">
+          <li>ESP32 → <code>/esp32_07/goal</code></li>
+          <li>Odometry → <code>/rpi_07/odom</code>, Localization → <code>/rpi_07/amcl_pose</code></li>
+          <li>Velocity control → <code>/rpi_07/cmd_vel</code></li>
+        </ul>
+      </li>
+      <li><strong>Action Server:</strong>
+        <ul class="section-list">
+          <li>Goal execution through <code>/rpi_07/navigate_to_pose</code> using <code>esp32_goal.py</code></li>
+        </ul>
+      </li>
+      <li><strong>Launch Architecture:</strong>
+        <ul class="section-list">
+          <li>Mapping via <code>auto_map.launch.py</code> (calls SLAM + RViz + obstacle_avoid + auto_save)</li>
+          <li>Navigation via <code>navigation_with_local.launch.py</code> (loads map, localization, Nav2 stack, and goal subscriber)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Validation</h3>
+    <ul class="section-list">
+      <li><strong>Console Echo:</strong> Verifying <code>/esp32_07/goal</code> reception and value range to ensure the ESP32 IMU topic is published and configured correctly.</li>
+      <li><strong>Visual Feedback:</strong>
+        <ul class="section-list">
+          <li>Goal markers visualized using RViz and <code>/goal_marker</code></li>
+          <li>Map and pose tracking via <code>/rpi_07/map</code>, <code>/rpi_07/odom</code>, and AMCL particles</li>
+        </ul>
+      </li>
+      <li><strong>Real-world Evidence:</strong>
+        <ul class="section-list">
+          <li>Recorded videos demonstrate successful navigation from initial pose to dynamic goal using Nav2’s global and local planners with AMCL-based localization while seamlessly integrating real-time obstacle avoidance; trajectory visualizations confirm convergence to goal.</li>
+          <li>Trajectory visualization confirms convergence to goal</li>
+        </ul>
+      </li>
+      <li><strong>Graphing (Optional):</strong>
+        <ul class="section-list">
+          <li>Position and path data can be logged via <code>/rpi_07/amcl_pose</code> alongside Nav2 planner metrics to evaluate localization accuracy, path planning efficiency, and trajectory smoothness.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+    <!-- Introduction -->
+    <section class="architecture fade-in">
+      <h2>Introduction</h2>
+      <div class="section-text">
+        <h3>Portfolio of Topics Learned</h3>
+        <ul class="section-list">
+          <li>ROS 2 concepts including nodes, publishers/subscribers, actions, and launch files</li>
+          <li>SLAM (Simultaneous Localization and Mapping) using Nav2 and TurtleBot 4</li>
+          <li>Autonomous navigation and localization using YAML map files</li>
+          <li>LiDAR-based obstacle avoidance</li>
+          <li>Action server communication for goal-based navigation (NavigateToPose)</li>
+          <li>Real-time goal communication via ESP32 and IMU integration</li>
+          <li>Map saving and loading using <code>map_saver_cli</code></li>
+          <li>Offloading heavy computation to a ROS 2–enabled VM for performance optimization</li>
+        </ul>
+
+        <h3>Assist Future Students to Define Their Project Scope</h3>
+        <p>This project serves as an excellent reference for students interested in:</p>
+        <ul class="section-list">
+          <li>Multi-agent communication (e.g., ESP32 and TurtleBot coordination)</li>
+          <li>Modular ROS 2 launch and execution design</li>
+          <li>Real-world autonomous navigation tasks</li>
+          <li>Incorporating embedded sensors like IMUs for higher-level decision making</li>
+          <li>Designing hybrid control systems (manual + autonomous)</li>
+        </ul>
+
+        <h3>Shaping the Class: Integrating Potential Creative Solutions</h3>
+        <p>A unique aspect of this project is the seamless interaction between an ESP32 and a robot platform through ROS 2 middleware. Instead of hard-coding goals or relying on GUI inputs, the robot reacts to real-world sensor inputs from a lightweight embedded device. This concept opens up creative applications such as:</p>
+        <ul class="section-list">
+          <li>Swarm coordination</li>
+          <li>Mobile robot dispatch</li>
+          <li>Remote exploration or search-and-rescue simulations</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Takeaways -->
+    <section class="architecture fade-in">
+      <h2>Key Takeaways</h2>
+      <div class="section-text">
+
+        <p>
+          This project showcased a successful transition from raw sensor-based motion attempts to a robust goal-oriented autonomous system powered by ROS 2. Challenges in initial control logic gave way to a more reliable architecture that used filtered IMU data to guide navigation. The integration of mapping, obstacle detection, action-based goal navigation, and real-time ROS messaging serves as a blueprint for future mobile robotic systems with embedded remote input sources.
+        </p>
+
+        <h3>Topics Learned</h3>
+        <ul class="section-list">
+          <li>ROS 2 architecture and launch system</li>
+          <li>Obstacle avoidance using LiDAR</li>
+          <li>Map saving and localization techniques</li>
+          <li>Using ActionClient and goal markers in real time</li>
+          <li>Bridging sensor data from ESP32 to a ROS 2 navigation stack</li>
+        </ul>
+
+        <h3>Problems Faced</h3>
+        <ul class="section-list">
+          <li>Slight inaccuracy in the final goal position</li>
+          <li>Manual setup required for robot pose initialization</li>
+          <li>CPU load bottlenecks on the TurtleBot 4’s onboard RPi</li>
+          <li>Initial latency in ESP32 goal communication</li>
+        </ul>
+
+        <h3>Solutions Found</h3>
+        <ul class="section-list">
+          <li>All computation runs on a dedicated VM— the RPi only forwards topics to the VM over Ethernet, which also lowers system latency.</li>
+          <li>Added startup delay and turning logic to <code>obstacle_avoid.py</code> for smoother performance</li>
+          <li>Introduced a keypress-triggered map save node for intuitive map storage</li>
+          <li>Ensured consistent namespace usage and topic remapping to streamline communication between nodes</li>
+        </ul>
+
+      </div>
+    </section>
+
+    
+
+    <!-- Pose Estimation & Model Fitting -->
+    <section class="architecture fade-in">
+      <h2>Pose Estimation &amp; Model Fitting</h2>
+      <ul class="section-list">
+        <li><strong>IMU-Based Orientation &amp; Filtering:</strong> Raw accelerometer and gyro data (<code>/imu/data</code>) are fused via the Madgwick filter in the <code>/imu_filter_madgwick</code> node to produce a stabilized quaternion on <code>/imu/orientation</code>.</li>
+        <li><strong>LiDAR-Based Odometry:</strong> SLAM Toolbox matches scans against the evolving map to generate drift-corrected pose estimates on <code>/odom</code>.</li>
+        <li><strong>Filtering Comparison:</strong> We compare Madgwick vs. complementary filters for noise rejection and latency trade-offs. An EKF is in development to unify IMU, LiDAR odometry, and wheel encoders into a single smoothed pose estimate.</li>
+        <li><strong>Comparative Analysis:</strong> Both <code>/imu/orientation</code> and <code>/odom</code> streams are plotted side-by-side in RQt to guide EKF tuning.</li>
+      </ul>
+    </section>
+
+    <!-- Integration into ROS 2 -->
+    <section class="architecture fade-in">
+      <h2>Integration into ROS 2</h2>
+      <p class="section-text">
+        ROS 2 orchestrates communication between the ESP32 goal bridge, SLAM Toolbox mapping, Nav2 planning, IMU filtering, and data logging via DDS and pub/sub, enabling distributed, real-time autonomy and seamless debugging.
+      </p>
+    </section>
+
+    <!-- Validation & Success Metrics -->
+    <section class="architecture fade-in">
+      <h2>Validation &amp; Success Metrics</h2>
+      <ul class="section-list">
+        <li><strong>Goal Accuracy:</strong> % of trials where the TurtleBot stops within 0.2 m of the target.</li>
+        <li><strong>Map Consistency:</strong> Overlay successive maps to quantify drift.</li>
+        <li><strong>Latency:</strong> Time from ESP32 goal publish to first motion command.</li>
+        <li><strong>Path Efficiency:</strong> Ratio of actual path length vs. optimal distance.</li>
+      </ul>
+    </section>
+
+    <!-- Updated Project Goals -->
+    <section class="architecture fade-in">
+      <h2>Updated Project Goals</h2>
+      <p class="goals-intro">
+        Our comprehensive objectives align all efforts toward a single hardware testbed: receiving goals wirelessly, mapping and planning with ROS 2, and logging performance metrics—laying groundwork for EKF-based fusion.
+      </p>
+      <div class="goals-cards">
+        <div class="goal-card">
+          <h3>Original Aim</h3>
+          <ul>
+            <li>Explore full multi-sensor fusion vs. simulation</li>
+            <li>Benchmark advanced SLAM pipelines</li>
+          </ul>
+        </div>
+        <div class="goal-card">
+          <h3>Current Aim</h3>
+          <ul>
+            <li>Ensure robust ESP32→TurtleBot goal interface</li>
+            <li>Demonstrate repeatable navigation with metrics</li>
+            <li>Prepare for future EKF fusion</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+<!-- Project Process & Workflow -->
+<section class="architecture fade-in">
+  <h2>Project Process &amp; Workflow</h2>
+  <p class="workflow-intro">
+    We progress through key features week-by-week—from TurtleBot activation and camera node, through filtering, SLAM, planning, GUI, to final integration and demo. The timeline below maps each feature to its scheduled week.
+  </p>
+
+  <div class="gantt-container">
+    <div class="gantt">
+      <!-- Top row: Week headers -->
+      <div class="header">Task</div>
+      <div class="header">Wk 7</div>
+      <div class="header">Wk 8</div>
+      <div class="header">Wk 9</div>
+      <div class="header">Wk 10</div>
+      <div class="header">Wk 11</div>
+      <div class="header">Wk 12</div>
+      <div class="header">Wk 13</div>
+      <div class="header">Wk 14</div>
+      <div class="header">Wk 15</div>
+      <div class="header">Wk 16</div>
+
+      <!-- Row 1: TurtleBot Activation -->
+      <div class="week-label" style="grid-row:2; grid-column:1;">TurtleBot Activation</div>
+      <div class="bar red" style="grid-row:2; grid-column:2;"></div>
+
+      <!-- Row 2: Camera Node -->
+      <div class="week-label" style="grid-row:3; grid-column:1;">Camera Node</div>
+      <div class="bar red" style="grid-row:3; grid-column:3 / span 2;"></div>
+
+      <!-- Row 3: IMU Filtering + GUI -->
+      <div class="week-label" style="grid-row:4; grid-column:1;">IMU Filtering + GUI</div>
+      <div class="bar red" style="grid-row:4; grid-column:4 / span 2;"></div>
+
+      <!-- Row 4: LiDAR + SLAM -->
+      <div class="week-label" style="grid-row:5; grid-column:1;">LiDAR + SLAM</div>
+      <div class="bar red" style="grid-row:5; grid-column:5 / span 2;"></div>
+
+      <!-- Row 5: Mapping with SLAM -->
+      <div class="week-label" style="grid-row:6; grid-column:1;">Mapping with SLAM</div>
+      <div class="bar red" style="grid-row:6; grid-column:6 / span 2;"></div>
+
+      <!-- Row 6: ESP32 + IMU Setup -->
+      <div class="week-label" style="grid-row:7; grid-column:1;">ESP32 + IMU Setup</div>
+      <div class="bar red" style="grid-row:7; grid-column:7 / span 2;"></div>
+
+      <!-- Row 7: Path Planning -->
+      <div class="week-label" style="grid-row:8; grid-column:1;">Path Planning</div>
+      <div class="bar red" style="grid-row:8; grid-column:8 / span 2;"></div>
+
+      <!-- Row 8: GUI: Live Data -->
+      <div class="week-label" style="grid-row:9; grid-column:1;">GUI: Live Data</div>
+      <div class="bar red" style="grid-row:9; grid-column:9 / span 2;"></div>
+
+      <!-- Row 9: Full Integration -->
+      <div class="week-label" style="grid-row:10; grid-column:1;">Full Integration</div>
+      <div class="bar red" style="grid-row:10; grid-column:10 / span 2;"></div>
+
+      <!-- Row 10: Final Demo -->
+      <div class="week-label" style="grid-row:11; grid-column:1;">Final Demo</div>
+      <div class="bar red" style="grid-row:11; grid-column:11;"></div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Flowchart (Mermaid) -->
+    <section class="architecture fade-in">
+      <h2>Flowchart</h2>
+      <p class="section-text" style="max-width:700px; margin:0.5rem auto 2rem;">
+        This flowchart illustrates our entire ROS 2–based navigation pipeline from system startup through autonomous goal execution and parameter tuning.  Each box represents a node or step, arrows show data flow, and the decision diamond marks whether the TurtleBot has reached its target.
+      </p>
+      <div class="mermaid">
+      graph TB
+        A[Start System Initialization]
+        A -->|Power Up & Self Check| B[TurtleBot4: Activate Sensor Suite<br/>IMU, LiDAR, Camera, Odometry]
+        B --> C[Perform SLAM & Build Map<br/>LiDAR-based Environment Mapping]
+        C --> D[ESP32 + IMU: Transmit Target Coordinates<br/>Over Wireless Interface]
+        D --> E[ROS 2: Convert Coordinates to Goal Pose<br/>Apply TF Transformations]
+        E --> F[Nav2 Stack: Perform Global & Local Planning<br/>Pathfinding with Obstacle Avoidance]
+        F --> G[TurtleBot4: Execute Motion Plan<br/>Navigate Autonomously to Target]
+        G --> H[Collect Real-time Sensor Data<br/>IMU for Stability, LiDAR for Collision Avoidance]
+        H --> I[Check Goal Reachability<br/>Feedback Loop from Navigation Result]
+        I --> J{Has TurtleBot4 Reached Target?}
+        J -->|No| F
+        J -->|Yes| K[Log Metrics & Final Position<br/>Store for Analysis]
+        K --> L[Optimize Parameters<br/>Update SLAM, TF, Nav Configs]
+        L --> F
+      </div>
+    </section>
+
+    <!-- Finalized System & ROS 2 Architecture -->
+<section class="architecture fade-in">
+  <h2>Finalized System &amp; ROS 2 Architecture</h2>
+  <p class="section-text">
+    Our ROS 2 Humble–based architecture ties together the ESP32 bridge, SLAM Toolbox, Nav2 controller, IMU filter, and data-logger into a unified navigation pipeline.
+  </p>
+
+  <!-- Flowchart Card -->
+  <div class="arch-card">
+    <img src="images/flowchart_transparent.png" alt="Project Architecture Flowchart" />
+  </div>
+
+  <!-- Two-column layout: Topics table on left, RQt graphs on right -->
+  <div class="arch-grid">
+    <!-- Topics & Data -->
+    <div class="topics-card">
+      <h3>Topics &amp; Data</h3>
+      <table>
+        <thead>
+          <tr><th>Topic</th><th>Data</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/esp32/goal</code></td><td>Target (x,y,θ) from ESP32</td></tr>
+          <tr><td><code>/scan</code></td><td>2D LiDAR point cloud</td></tr>
+          <tr><td><code>/map</code></td><td>Occupancy grid for SLAM</td></tr>
+          <tr><td><code>/odom</code></td><td>SLAM odometry pose</td></tr>
+          <tr><td><code>/cmd_vel</code></td><td>Velocity commands</td></tr>
+          <tr><td><code>/imu/data</code></td><td>Raw accelerometer &amp; gyro</td></tr>
+          <tr><td><code>/imu/orientation</code></td><td>Filtered quaternion</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- RQt Graphs -->
+    <div class="rqt-card">
+      <h3>RQt Visualizations</h3>
+      <div class="rqt-images">
+        <figure>
+          <a href="images/auto_slam_rqt.png" target="_blank" rel="noopener">
+            <img src="images/auto_slam_rqt.png" alt="SLAM Toolbox RQt Overview" />
+          </a>
+          <figcaption>Auto SLAM RQt Overview</figcaption>
+        </figure>
+        <figure>
+          <a href="images/goal_autonomy_rqt.png" target="_blank" rel="noopener">
+            <img src="images/goal_autonomy_rqt.png" alt="Goal Autonomy RQt Metrics" />
+          </a>
+          <figcaption>Goal Autonomy RQt Metrics</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- System Constraints and Practical Trade-offs -->
+<section class="architecture fade-in">
+  <h2>⚙ System Constraints and Practical Trade-offs</h2>
+  <ul class="section-list">
+    <li>
+      <strong>Hardware Limitations (TurtleBot4 Raspberry Pi):</strong>
+      <div class="tradeoff-detail">
+        <p>The onboard Raspberry Pi has limited CPU and memory, which cannot handle SLAM, RViz, and real-time navigation reliably.</p>
+        <p><em>Mitigation:</em> Offloaded all ROS 2 processing (Nav2, SLAM Toolbox, RViz) to a powerful external VM via network connection.</p>
+      </div>
+    </li>
+    <li>
+      <strong>Sensor Accuracy (ESP32 IMU):</strong>
+      <div class="tradeoff-detail">
+        <p>The ESP32 IMU provides noisy positional estimates, lacking consistent global frame accuracy or drift correction.</p>
+        <p><em>Mitigation:</em> Used IMU only for static goal publishing, not continuous motion control. Applied soft filtering to suppress jitter.</p>
+      </div>
+    </li>
+    <li>
+      <strong>Localization Requirement:</strong>
+      <div class="tradeoff-detail">
+        <p>AMCL requires the robot's initial pose to be manually set after map load. Autonomous re-localization is not supported at boot time.</p>
+        <p><em>Mitigation:</em> Manual RViz initialization was performed after loading the map via <code>navigation_with_local.launch.py</code>.</p>
+      </div>
+    </li>
+    <li>
+      <strong>Single Goal Execution:</strong>
+      <div class="tradeoff-detail">
+        <p>The navigation stack accepts one goal at a time. Frequent updates from ESP32 could overload or confuse the planner.</p>
+        <p><em>Mitigation:</em> Designed system to send the goal only once per session (or after timeout) to reduce conflicts.</p>
+      </div>
+    </li>
+    <li>
+      <strong>Real-Time Serial Communication:</strong>
+      <div class="tradeoff-detail">
+        <p>Serial reading from ESP32 is synchronous and may block if data is malformed or delayed.</p>
+        <p><em>Mitigation:</em> Implemented error handling and pattern matching (regex) to safely skip malformed data in <code>esp32_07_imu.py</code>.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+
+    <!-- Final Demonstration Plan -->
+    <section class="architecture fade-in">
+      <h2>Final Demonstration Plan</h2>
+      <div class="section-text">
+        <p><strong>Setup:</strong> TurtleBot in indoor arena; ESP32 sends target & heading to Pi.</p>
+        <p><strong>Execution:</strong> Pi maps environment, plans path, TurtleBot navigates while GUI displays live data.</p>
+        <p><strong>Metrics:</strong></p>
+        <ul class="section-list">
+          <li>Goal-reaching accuracy</li>
+          <li>Map quality</li>
+          <li>Obstacle avoidance</li>
+          <li>GUI latency</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Testing & Evaluation Plan -->
+    <section class="architecture fade-in">
+      <h2>Testing &amp; Evaluation Plan</h2>
+      <div class="section-text">
+        <p><strong>1. Unit Testing</strong></p>
+        <ul class="section-list">
+          <li>ESP32 IMU transmission</li>
+          <li>ROS 2 topic publishing</li>
+          <li>Nav2 local planner</li>
+        </ul>
+        <p><strong>2. Integration Testing</strong></p>
+        <ul class="section-list">
+          <li>Live sensor path planning</li>
+          <li>Reaction to goal updates</li>
+        </>
+        <p><strong>3. Error Handling</strong></p>
+        <ul class="section-list">
+          <li>ESP32 dropout recovery</li>
+          <li>Navigation collision recovery</li>
+        </ul>
+        <p><strong>4. Performance Metrics</strong></p>
+        <ul class="section-list">
+          <li>Distance error</li>
+          <li>Completion time</li>
+          <li>Obstacle handling success</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Project Impact -->
+    <section class="architecture fade-in">
+      <h2>Project Impact</h2>
+      <p class="section-text">
+        This project demonstrates how low-cost autonomous robots can be enhanced through ROS 2–based multi-sensor fusion and decentralized coordination using microcontrollers. By integrating LiDAR, camera, IMU, and wireless goal delivery, we lay the groundwork for reliable indoor navigation on affordable hardware. Potential applications include assistive robots for elderly care, automated inventory transport in warehouses, and hands-on robotics education platforms.
+      </p>
+    </section>
+    
+    <!-- Advising & Resource Needs -->
+    <section class="architecture fade-in">
+      <h2>Advising &amp; Resource Needs</h2>
+      <p class="section-text">
+        <strong>Advisor: Prof. Daniel M. Aukes</strong><br>
+        Prof. Aukes brings deep expertise in SLAM, multi-robot coordination, and real-world system deployment. He will guide our technical design, help troubleshoot integration challenges, and advise on tuning SLAM and Nav2 parameters. Through his lab, we will access high-precision sensors and test facilities, and his industry connections may assist in securing additional funding and hardware resources. His mentorship is vital for ensuring our system meets state-of-the-art performance and remains aligned with current robotics research.
+      </p>
     </section>
 
     <footer>
-      <div class="section">
-        <strong>What We Do:</strong> We enable machines to see and understand the world.
-      </div>
-      <div class="section">
-        <strong>Our Mission:</strong> Boosting wider adoption of robotics in the world.
-      </div>
+      <div class="section"><strong>What We Do:</strong> We enable machines to see and understand the world.</div>
+      <div class="section"><strong>Our Mission:</strong> Boosting wider adoption of robotics in the world.</div>
       <div class="section">
         <strong>Follow Us:</strong>
         <a href="https://ras598-2025-s-team05.github.io/" target="_blank">GitHub</a>
@@ -264,21 +1154,88 @@
     </footer>
   </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1200 });
+  <!-- Animation & Scroll Libraries -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
 
+  <script>
     function enterSite() {
       const splash = document.querySelector('.splash-screen');
       const img = splash.querySelector('img');
+      const clone = document.createElement('img');
+      clone.src = img.src;
+      clone.classList.add('turtlebot-animated');
+      document.body.appendChild(clone);
       splash.classList.add('animate');
       img.classList.add('animate');
       setTimeout(() => {
         splash.classList.add('hidden');
-        document.body.classList.add('loaded');
+        document.querySelectorAll('.hero-text .fade-in').forEach((el,i) => setTimeout(() => el.classList.add('visible'), 300*i));
+        setTimeout(() => {
+          document.body.removeChild(clone);
+          document.querySelector('.hero-image').classList.add('repositioned');
+          document.querySelector('.rotating-square').classList.add('repositioned');
+          document.querySelector('.hero-image img').classList.add('visible');
+          initScrollAnimations();
+        }, 2500);
       }, 800);
     }
+
+    function initScrollAnimations() {
+      const container = document.querySelector('[data-scroll-container]');
+      const scroll = new LocomotiveScroll({ el: container, smooth: true, multiplier: 1.5, lerp: 0.05 });
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.scrollerProxy(container, {
+        scrollTop(val) { return arguments.length ? scroll.scrollTo(val,0,0) : scroll.scroll.instance.scroll.y; },
+        getBoundingClientRect() { return { top:0,left:0,width:window.innerWidth,height:window.innerHeight }; },
+        pinType: container.style.transform ? 'transform' : 'fixed'
+      });
+      scroll.on('scroll', ScrollTrigger.update);
+      ScrollTrigger.addEventListener('refresh', () => scroll.update());
+      ScrollTrigger.refresh();
+
+      document.querySelectorAll('.architecture').forEach((sec) => {
+        gsap.set(sec, { y:100, opacity:0 });
+        ScrollTrigger.create({
+          trigger: sec, scroller: container, start:'top 85%',
+          onEnter: () => {
+            sec.classList.add('animate');
+            gsap.to(sec, { y:0, opacity:1, duration:1.2 });
+            sec.querySelectorAll('.fade-in').forEach((el,j) => setTimeout(() => el.classList.add('visible'), 200*j));
+          }
+        });
+      });
+
+      gsap.from('.sensor-table', { scale:0.8, opacity:0, duration:1.2, scrollTrigger:{ trigger:'.sensor-table', scroller:container, start:'top 90%' } });
+      gsap.from('footer', { y:100, opacity:0, duration:1, scrollTrigger:{ trigger:'footer', scroller:container, start:'top bottom' } });
+
+      // background color dynamics
+      const colors = ['#1a082f','#200230','#230c33','#1c102b','#1a082f'];
+      ScrollTrigger.create({
+        trigger:'.hero', scroller:container, start:'top center', end:'bottom center',
+        onEnter:() => gsap.to('body',{ backgroundColor:colors[0], duration:1 }),
+        onLeaveBack:() => gsap.to('body',{ backgroundColor:'#0e031f', duration:1 })
+      });
+      ['1','2','3','4','5'].forEach(idx => {
+        ScrollTrigger.create({
+          trigger:`.architecture:nth-of-type(${idx})`, scroller:container, start:'top center', end:'bottom center',
+          onEnter:() => gsap.to('body',{ backgroundColor:colors[parseInt(idx)], duration:1 }),
+          onLeaveBack:() => gsap.to('body',{ backgroundColor:colors[parseInt(idx)-1], duration:1 })
+        });
+      });
+
+      document.querySelectorAll('.fade-in').forEach(el =>
+        ScrollTrigger.create({ trigger:el, scroller:container, start:'top 90%', onEnter:() => el.classList.add('visible') })
+      );
+    }
+
+    setTimeout(() => {
+      if (!document.querySelector('.splash-screen').classList.contains('hidden')) {
+        enterSite();
+      }
+    }, 3000);
   </script>
 </body>
-
 </html>
