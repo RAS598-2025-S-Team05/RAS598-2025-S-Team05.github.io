@@ -840,12 +840,19 @@
 
     <!-- Pose Estimation & Model Fitting -->
     <section class="architecture fade-in">
-      <h2>Pose Estimation &amp; Model Fitting</h2>
+      <h2>Pose Estimation & Model Fitting</h2>
       <ul class="section-list">
-        <li><strong>IMU-Based Orientation &amp; Filtering:</strong> Raw accelerometer and gyro data (<code>/imu/data</code>) are fused via the Madgwick filter in the <code>/imu_filter_madgwick</code> node to produce a stabilized quaternion on <code>/imu/orientation</code>.</li>
-        <li><strong>LiDAR-Based Odometry:</strong> SLAM Toolbox matches scans against the evolving map to generate drift-corrected pose estimates on <code>/odom</code>.</li>
-        <li><strong>Filtering Comparison:</strong> We compare Madgwick vs. complementary filters for noise rejection and latency trade-offs. An EKF is in development to unify IMU, LiDAR odometry, and wheel encoders into a single smoothed pose estimate.</li>
-        <li><strong>Comparative Analysis:</strong> Both <code>/imu/orientation</code> and <code>/odom</code> streams are plotted side-by-side in RQt to guide EKF tuning.</li>
+        <li><strong>IMU-Based Goal Publishing &amp; Filtering:</strong> The ESP32 captures orientation data and publishes target positions to <code>/esp32_07/goal</code> as <code>geometry_msgs/Point</code> messages. A low-pass filter on the ESP32 side smooths out noise, ensuring only stable goal updates are transmitted.</li>
+        <li><strong>LiDAR-Based Mapping &amp; Odometry:</strong> TurtleBot 4 consumes LiDAR scans from <code>/rpi_07/scan</code> via SLAM Toolbox (launched in <code>auto_map.launch.py</code>), builds the map in real time, saves it with <code>auto_save.py</code>, and publishes odometry on <code>/rpi_07/odom</code>.</li>
+        <li><strong>Filtering Strategy:</strong> Dual-layered filtering ensures robustness: on the ESP32, a low-pass filter smooths IMU-derived goals; on the TurtleBot, rapid successive goal updates are ignored so the robot commits to one stable goal per session.</li>
+        <li><strong>Comparative Analysis &amp; Visualization:</strong>  
+          <ul>
+            <li>Console Monitoring of <code>/esp32_07/goal</code> to verify stability.</li>
+            <li>RViz display of <code>/rpi_07/amcl_pose</code>, <code>/rpi_07/odom</code>, and goal markers for real-time feedback.</li>
+            <li>Trajectory logging to analyze convergence and obstacle avoidance.</li>
+            <li>Optional graphing of position and path data to evaluate localization accuracy and planning efficiency.</li>
+          </ul>
+        </li>
       </ul>
     </section>
 
@@ -1048,10 +1055,10 @@
       <h3>RQt Visualizations</h3>
       <div class="rqt-images">
         <figure>
-          <a href="images/auto_slam_rqt.png" target="_blank" rel="noopener">
-            <img src="images/auto_slam_rqt.png" alt="SLAM Toolbox RQt Overview" />
+          <a href="images/rqt_graph_slam.png" target="_blank" rel="noopener">
+            <img src="images/rqt_graph_slam.png" alt="SLAM Toolbox RQt Overview" />
           </a>
-          <figcaption>Auto SLAM RQt Overview</figcaption>
+          <figcaption>SLAM Toolbox RQt Overview</figcaption>
         </figure>
         <figure>
           <a href="images/goal_autonomy_rqt.png" target="_blank" rel="noopener">
