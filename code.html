@@ -136,6 +136,7 @@
       cursor: pointer;
       font-size: 1rem;
       margin-top: 1rem;
+      margin-right: 1rem;
     }
 
     footer {
@@ -170,6 +171,9 @@
       <p>This page introduces the key launch files and custom nodes that power TurtleBot 4’s autonomous mapping and navigation, illustrating how SLAM, localization, path planning, collision prevention, and map saving integrate seamlessly.</p>
       <p>Explore the full source code on GitHub:</p>
       <button onclick="window.location.href='https://github.com/RAS598-2025-S-Team05/RAS598-2025-S-Team05.github.io';">View Code on GitHub</button>
+      <!-- New training data paragraph and button -->
+      <p>We’ve also provided the dataset used to train our models; feel free to download and inspect it.</p>
+      <button onclick="window.location.href='https://github.com/RAS598-2025-S-Team05/RAS598-2025-S-Team05.github.io/tree/main/train_data';">View Training Data</button>
     </section>
 
     <!-- auto_map.launch.py -->
@@ -346,8 +350,8 @@ this.scan_sub = this.create_subscription(
 
         <pre><code>
 this.ser = serial.Serial('/dev/ttyUSB0', 115200, timeout=1)
- time.sleep(2)
- this.publisher_ = this.create_publisher(Point, '/esp32_07/goal', 10)
+time.sleep(2)
+this.publisher_ = this.create_publisher(Point, '/esp32_07/goal', 10)
         </code></pre>
         <pre><code>
 line = this.ser.readline().decode('utf-8').strip()
