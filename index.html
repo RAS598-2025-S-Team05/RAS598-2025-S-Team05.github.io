@@ -984,38 +984,64 @@
       </div>
     </section>
 
-    <!-- Finalized System & ROS 2 Architecture -->
-<section class="architecture fade-in">
-  <h2>Finalized System &amp; ROS 2 Architecture</h2>
-  <p class="section-text">
-    Our ROS 2 Humble–based architecture ties together the ESP32 bridge, SLAM Toolbox, Nav2 controller, IMU filter, and data-logger into a unified navigation pipeline.
-  </p>
 
-  <!-- Flowchart Card -->
-  <div class="arch-card">
-    <img src="images/flowchart_transparent.png" alt="Project Architecture Flowchart" />
-  </div>
 
-  <!-- Two-column layout: Topics table on left, RQt graphs on right -->
-  <div class="arch-grid">
-    <!-- Topics & Data -->
-    <div class="topics-card">
-      <h3>Topics &amp; Data</h3>
-      <table>
-        <thead>
-          <tr><th>Topic</th><th>Data</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>/esp32/goal</code></td><td>Target (x,y,θ) from ESP32</td></tr>
-          <tr><td><code>/scan</code></td><td>2D LiDAR point cloud</td></tr>
-          <tr><td><code>/map</code></td><td>Occupancy grid for SLAM</td></tr>
-          <tr><td><code>/odom</code></td><td>SLAM odometry pose</td></tr>
-          <tr><td><code>/cmd_vel</code></td><td>Velocity commands</td></tr>
-          <tr><td><code>/imu/data</code></td><td>Raw accelerometer &amp; gyro</td></tr>
-          <tr><td><code>/imu/orientation</code></td><td>Filtered quaternion</td></tr>
-        </tbody>
-      </table>
+  <!-- Finalized System & ROS 2 Architecture -->
+  <section class="architecture fade-in">
+    <h2>Finalized System &amp; ROS 2 Architecture</h2>
+    <p class="section-text">
+      Our ROS 2 Humble–based architecture ties together the ESP32 bridge, SLAM Toolbox, Nav2 controller, IMU filter, and data-logger into a unified navigation pipeline.
+    </p>
+
+    <!-- Flowchart Card -->
+    <div class="arch-card">
+      <img src="images/flowchart_transparent.png" alt="Project Architecture Flowchart" />
     </div>
+
+    <!-- Two-column layout: Topics & Nodes -->
+    <div class="arch-grid">
+      <!-- Topics & Data -->
+      <div class="topics-card">
+        <h3>Topics &amp; Data</h3>
+        <table>
+          <thead>
+            <tr><th>Topic</th><th>Data</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>/rpi_07/map</code></td><td>Occupancy grid map generated from SLAM Toolbox</td></tr>
+              <tr><td><code>/rpi_07/scan</code></td><td>Raw laser scan data from the LiDAR sensor</td></tr>
+              <tr><td><code>/rpi_07/waypoints</code></td><td>Waypoint list used by navigate_through_poses</td></tr>
+              <tr><td><code>/rpi_07/navigate_to_pose/_action/feedback</code></td><td>Navigation action feedback (distance remaining, etc.)</td></tr>
+              <tr><td><code>/rpi_07/navigate_to_pose/_action/status</code></td><td>Navigation goal status (e.g., succeeded, aborted)</td></tr>
+              <tr><td><code>/rpi_07/navigate_through_poses/_action/feedback</code></td><td>Feedback for multi-goal navigation</td></tr>
+              <tr><td><code>/rpi_07/tf, /rpi_07/tf_static</code></td><td>Transform messages for frame tracking</td></tr>
+              <tr><td><code>/rpi_07/global_costmap/costmap, /local_costmap</code></td><td>Represents global and local planning costmaps</td></tr>
+              <tr><td><code>/rpi_07/goal_pose</code></td><td>Final goal sent by ESP32 or UI to initiate navigation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Nodes & Descriptions -->
+      <div class="topics-card">
+        <h3>Nodes &amp; Descriptions</h3>
+        <table>
+          <thead>
+            <tr><th>Node Name</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>/rpi_07/slam_toolbox</code></td><td>Real-time SLAM mapping using LiDAR and odometry data</td></tr>
+            <tr><td><code>/rpi_07/obstacle_avoid</code></td><td>Processes LiDAR data to avoid collisions</td></tr>
+            <tr><td><code>/rpi_07/navigate_to_pose</code></td><td>Nav2 action server for navigation to a single goal</td></tr>
+            <tr><td><code>/rpi_07/navigate_through_poses</code></td><td>Nav2 action server for sequential waypoint navigation</td></tr>
+            <tr><td><code>/rpi_07/transform_listener_impl_*</code></td><td>Listens to TF tree transformations</td></tr>
+            <tr><td><code>/rpi_07/rviz2</code></td><td>RViz2 visualization of robot state and map</td></tr>
+            <tr><td><code>/rpi_07/controller_server</code>, <code>/behavior_server</code>, <code>/planner_server</code></td><td>Nav2 core modules for planning and control</td></tr>
+            <tr><td><code>/rpi_07/lifecycle_manager_navigation</code></td><td>Manages lifecycle transitions of navigation nodes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 
     <!-- RQt Graphs -->
     <div class="rqt-card">
@@ -1034,7 +1060,7 @@
           <figcaption>Goal Autonomy RQt Metrics</figcaption>
         </figure>
       </div>
-    </div>
+    
   </div>
 </section>
 
